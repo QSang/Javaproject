@@ -17,3 +17,5 @@ How to:
 2. Download SDK http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 3. stel het SDK in
 4. Build en Run
+
+WERK IN EEN ANDERE BRANCH NIET DE MASTER BRANCH
