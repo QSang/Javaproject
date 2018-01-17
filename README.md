@@ -11,3 +11,5 @@ push branch: git push origin test-branch
 check branch: git branch of git branch -v
 
 add all files: git add -A git commit: git commit -m "vul text"
+
+Om project te downloaden en te importen moet het via VCS
