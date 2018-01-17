@@ -12,4 +12,8 @@ check branch: git branch of git branch -v
 
 add all files: git add -A git commit: git commit -m "vul text"
 
-Om project te downloaden en te importen moet het via VCS
+How to:
+1. Clone project Parkeergarage
+2. Download SDK http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+3. stel het SDK in
+4. Build en Run
