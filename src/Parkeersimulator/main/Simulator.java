@@ -5,14 +5,15 @@ import Parkeersimulator.view.*;
 import Parkeersimulator.controller.*;
 import Parkeersimulator.runner.*;
 
+import javax.swing.*;
 import java.util.Random;
 
-public class Simulator {
+public final class Simulator extends JFrame {
 
 	private static final String AD_HOC = "1";
 	private static final String PASS = "2";
-	
-	
+
+
 	private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
@@ -81,7 +82,7 @@ public class Simulator {
     private void handleEntrance(){
     	carsArriving();
     	carsEntering(entrancePassQueue);
-    	carsEntering(entranceCarQueue);  	
+    	carsEntering(entranceCarQueue);
     }
     
     private void handleExit(){
