@@ -1,12 +1,12 @@
 package Parkeersimulator.controller;
 
-import Parkeersimulator.logic.AbstractModel;
+import Parkeersimulator.logic.*;
 import javax.swing.*;
 
 public abstract class AbstractController extends JPanel {
-    protected AbstractModel model;
+    protected Simulator simulator;
 
     public AbstractController(AbstractModel model) {
-        this.model = model;
+        this.simulator = simulator;
     }
 }
