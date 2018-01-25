@@ -451,6 +451,18 @@ public class Model extends AbstractModel implements Runnable{
         //this.setTitle(text);
     }
 
+    public int getEntranceCarQueue() {
+        return entranceCarQueue.carsInQueue();
+    }
+
+    public int getPassCarQueue() {
+        return entrancePassQueue.carsInQueue();
+    }
+
+    public int getExitCarQueue() {
+        return exitCarQueue.carsInQueue();
+    }
+
     /**
      * Checks if location is within the given bounds of the car park.
      *
