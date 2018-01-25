@@ -42,6 +42,11 @@ public class Model extends AbstractModel implements Runnable{
     double price;
     double priceReduced;
 
+    private static int entranceIndex = 0;
+    private static int getExitIndex = 0;
+    private static int getPayCashIndex = 0;
+    private static int getPayPassIndex = 0;
+    private static int getPayReservationIndex = 0;
     public boolean run;
 
     public Model() {

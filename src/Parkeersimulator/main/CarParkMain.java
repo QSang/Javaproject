@@ -1,8 +1,8 @@
 package Parkeersimulator.main;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
 
-import javax.swing.JFrame;
+import java.awt.*;
 
 import Parkeersimulator.controller.SimulatorController;
 import Parkeersimulator.logic.Model;
@@ -13,29 +13,46 @@ import Parkeersimulator.view.DisplayQueueView;
 public class CarParkMain {
     private JFrame screen;
     private Model model;
-    private AbstractView carparkview;
+    private AbstractView carParkView;
     private AbstractView displayQueueView;
+
 
 
     private SimulatorController controller;
 
     public CarParkMain() {
         model = new Model();
+
         controller = new SimulatorController(model);
-        carparkview = new CarParkView(model);
+        carParkView = new CarParkView(model);
         displayQueueView = new DisplayQueueView(model);
-        screen = new JFrame("Parkeersimulator");
-        screen.setSize(1200, 600);
+
+        screen = new JFrame("ParkeerGarage simulator");
+        screen.setSize(885, 820 );
+
+        screen.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.DARK_GRAY));
+        screen.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.DARK_GRAY));
+
+
         screen.setResizable(false);
 
-        screen.getContentPane().add(carparkview);
+        screen.getContentPane().add(carParkView);
         screen.getContentPane().add(controller);
-        screen.getContentPane().add(controller);
-        carparkview.setBounds(260,30,900,500);
-        controller.setBounds(30,320,910,200);
-        displayQueueView.setBounds(30,320,910,200);
+        screen.getContentPane().add(displayQueueView);
+
+        controller.setBounds(-2, 730, 875, 50);
+
+        carParkView.setBounds(5,10,860,420);
+        displayQueueView.setBounds(245,640,300,80);
+
         screen.setVisible(true);
         screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Color displayQueueBg = new Color(0xDBEEF4);
+
+        screen.setBackground(displayQueueBg);
+
+
         model.start();
     }
 }

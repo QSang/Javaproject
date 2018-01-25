@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class SimulatorController extends AbstractController implements ActionListener
 {
-    private JButton steps, startButton,stopButton;
+    private JButton steps,startButton, stopButton;
     private JLabel insertSteps;
     private JTextField stepsField;
 

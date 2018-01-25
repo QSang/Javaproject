@@ -17,7 +17,7 @@ public class CarParkView extends AbstractView {
     private Model model;
 
     /**
-     * Constructor for objects of class CarPark
+     * Constructor for objects of class Model
      */
     public CarParkView(Model model) {
         super(model);
@@ -99,4 +99,5 @@ public class CarParkView extends AbstractView {
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
+
 }
