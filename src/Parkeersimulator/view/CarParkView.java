@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.*;
+import Parkeersimulator.logic.*;
 
-import Parkeersimulator.logic.Car;
-import Parkeersimulator.logic.Location;
-import Parkeersimulator.logic.Model;
+import Parkeersimulator.main.*;
 
 
 public class CarParkView extends AbstractView {
@@ -15,6 +15,12 @@ public class CarParkView extends AbstractView {
     private Dimension size;
     private Image carParkImage;
     private Model model;
+
+
+    private static int AdHocCar;
+    private static int ParkPassCar;
+    private static int ReservationCar;
+    private static int ReservedSpot;
 
     /**
      * Constructor for objects of class CarPark
@@ -62,32 +68,37 @@ public class CarParkView extends AbstractView {
             size = getSize();
             carParkImage = createImage(size.width, size.height);
         }
+        AdHocCar = 0;
+        ParkPassCar = 0;
+        ReservationCar = 0;
+        ReservedSpot = 0;
+
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < model.getNumberOfFloors()-1; floor++) {
-            for(int row = 0; row < model.getNumberOfRows(); row++) {
-                for(int place = 0; place < model.getNumberOfPlaces(); place++) {
+        for(int floor = 0; floor < Model.getNumberOfFloors(); floor++) {
+            for(int row = 0; row < Model.getNumberOfRows(); row++) {
+                for(int place = 0; place < Model.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    Car car = model.getCarAt(location);
-                    Color color = car == null ? Color.decode("#E2E2E2") : car.getColor();
-                    drawPlace(graphics, location, color);
+                    Car car = Model.getCarAt(location);
+                    if (car == null){
+                        Color color = Color.white;
+                        drawPlace(graphics, location, color);
+                    }
+                    else if (car != null && car.getClass().equals(AdHocCar.class)){
+                        Color color1 = Color.red;
+                        drawPlace(graphics, location, color1);
+                        AdHocCar++;
+                    }
+                    else if (car != null && car.getClass().equals(ParkingPassCar.class)){
+                        Color color2 = Color.orange;
+                        drawPlace(graphics, location, color2);
+                        ParkPassCar++;
+                    }
+
                 }
             }
         }
 
-        // Hardcoded, could be done differently
-        for(int floor = 2; floor < model.getNumberOfFloors(); floor++) {
-            for(int row = 0; row < model.getNumberOfRows(); row++) {
-                for(int place = 0; place < model.getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    Car car = model.getCarAt(location);
-                    Color color = car == null ? Color.decode("#cecccd") : car.getColor();
-                    drawPlace(graphics, location, color);
-                }
-            }
-        }
-        repaint();
     }
-
     /**
      * Paint a place on this car park view in a given color.
      */
@@ -98,5 +109,22 @@ public class CarParkView extends AbstractView {
                 60 + location.getPlace() * 10,
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
+    }
+
+    /**
+     * The methods below are getters for the PieView and the textOverview classes
+     */
+
+    public static int GetAdHoc(){
+        return AdHocCar;
+    }
+    public static int GetParkPass(){
+        return ParkPassCar;
+    }
+    public static int GetReservationCar(){
+        return ReservationCar;
+    }
+    public static int GetReservedSpot(){
+        return ReservedSpot;
     }
 }
