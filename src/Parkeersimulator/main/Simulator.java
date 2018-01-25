@@ -1,4 +1,9 @@
-package Parkeersimulator;
+package Parkeersimulator.main;
+
+import Parkeersimulator.logic.*;
+import Parkeersimulator.view.*;
+import Parkeersimulator.controller.*;
+import Parkeersimulator.runner.*;
 
 import java.util.Random;
 
@@ -35,10 +40,6 @@ public class Simulator {
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         simulatorView = new SimulatorView(3, 6, 30);
-    }
-
-    public static void main (String[] args){
-        new Simulator().run();
     }
 
     public void run() {
