@@ -1,18 +1,21 @@
 package Parkeersimulator.view;
 
-import javax.swing.*;
-import Parkeersimulator.logic.*;
+import javax.swing.JPanel;
+import Parkeersimulator.logic.Model;
 
-public abstract class AbstractView extends JPanel {
-    protected ParkGarage simulator;
-    protected AbstractModel model;
+public abstract class AbstractView extends JPanel{
+    protected Model model;
 
-    public AbstractView(ParkGarage simulator) {
-        this.simulator=simulator;
-        simulator.addView(this);
+    public AbstractView(Model model) {
+        this.model = model;
+        model.addView(this);
     }
 
-    public void updateView() {
+    public Model getModel(){
+        return model;
+    }
+
+    public void updateView(){
         repaint();
     }
 }
