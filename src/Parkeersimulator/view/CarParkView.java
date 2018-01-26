@@ -16,15 +16,17 @@ public class CarParkView extends AbstractView {
     private Image carParkImage;
     private Model model;
 
+    private static int AdHocCar;
+    private static int ParkPassCar;
+
     /**
-     * Constructor for objects of class CarPark
+     * Constructor for objects of class Model
      */
     public CarParkView(Model model) {
         super(model);
         this.model = model;
         size = new Dimension(0, 0);
     }
-
 
     /**
      * Overridden. Tell the GUI manager how big we would like to be.
@@ -74,7 +76,6 @@ public class CarParkView extends AbstractView {
             }
         }
 
-        // Hardcoded, could be done differently
         for(int floor = 2; floor < model.getNumberOfFloors(); floor++) {
             for(int row = 0; row < model.getNumberOfRows(); row++) {
                 for(int place = 0; place < model.getNumberOfPlaces(); place++) {
@@ -99,4 +100,12 @@ public class CarParkView extends AbstractView {
                 20 - 1,
                 10 - 1); // TODO use dynamic size or constants
     }
+
+    public static int GetAdHoc(){
+        return AdHocCar;
+    }
+    public static int GetParkPass(){
+        return ParkPassCar;
+    }
+
 }
