@@ -64,7 +64,6 @@ public class Model extends AbstractModel {
         priceReduced = 2.0;
         turnoverTotal = 0.0;
 
-
         //simulatorView = new SimulatorView(this);
     }
 
