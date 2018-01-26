@@ -70,15 +70,14 @@ public class CarParkView extends AbstractView {
         }
         AdHocCar = 0;
         ParkPassCar = 0;
-        ReservationCar = 0;
-        ReservedSpot = 0;
+
 
         Graphics graphics = carParkImage.getGraphics();
-        for(int floor = 0; floor < Model.getNumberOfFloors(); floor++) {
-            for(int row = 0; row < Model.getNumberOfRows(); row++) {
-                for(int place = 0; place < Model.getNumberOfPlaces(); place++) {
+        for(int floor = 0; floor < model.getNumberOfFloors(); floor++) {
+            for(int row = 0; row < model.getNumberOfRows(); row++) {
+                for(int place = 0; place < model.getNumberOfPlaces(); place++) {
                     Location location = new Location(floor, row, place);
-                    Car car = Model.getCarAt(location);
+                    Car car = model.getCarAt(location);
                     if (car == null){
                         Color color = Color.white;
                         drawPlace(graphics, location, color);
@@ -121,10 +120,5 @@ public class CarParkView extends AbstractView {
     public static int GetParkPass(){
         return ParkPassCar;
     }
-    public static int GetReservationCar(){
-        return ReservationCar;
-    }
-    public static int GetReservedSpot(){
-        return ReservedSpot;
-    }
+
 }
