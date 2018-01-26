@@ -24,7 +24,11 @@ public class Model extends AbstractModel implements Runnable{
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 1000;
+    private int tickPause = 250;
+
+    private boolean stop;
+    private boolean start;
+    private boolean set;
 
     int weekDayArrivals=100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -66,39 +70,41 @@ public class Model extends AbstractModel implements Runnable{
         priceReduced = 2.0;
         turnoverTotal = 0.0;
 
-
         //simulatorView = new SimulatorView(this);
     }
 
-    public void start() {
-        new Thread(this).start();
-    }
-
-    /**
-     * Starts the simulation for 10.000 ticks, each tick representing 1 minute.
-     */
-    public void run() {
-        run = true;
-        for (int i = 0; i < 10000; i++) {
-            tick();
+    public void runCommand(int getal) {
+        //if(stop)setStart(false);
+        int i = getal;
+        if (!start) {
+            setStart(true);
+            while (i > 0) {
+                tick();
+                i--;
+                if (stop) return;
+                if (i <= 0) setStart(false);
+            }
         }
     }
 
     /**
      * Progressess the application for 1 minute.
      */
-    public void tick() {
-        advanceTime();
-        handleExit();
-        updateViews();
-        // Pause.
-        try {
-            Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        handleEntrance();
-    }
+            private void tick()
+            {
+                advanceTime();
+                handleExit();
+                updateViews();
+
+                // Pause.
+                try {
+                    Thread.sleep(tickPause);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handleEntrance();
+
+            }
 
     /**
      * Advance the time by one minute.
@@ -484,6 +490,50 @@ public class Model extends AbstractModel implements Runnable{
         return true;
     }
 
+    public void ChangeWeekAr(int getal){
+        this.weekDayArrivals = getal;
+    }
+    public void ChangeWeekendAr(int getal){
+        this.weekendArrivals  = getal;
+    }
+    public void ChangeWeekP(int getal){
+        this.weekDayPassArrivals = getal;
+    }
+    public void ChangeWeekendP(int getal){
+        this.weekendPassArrivals = getal;
+    }
+    public void ChangeWeekRes(int getal){
+        this.weekDayReservedArrivals = getal;
+    }
+    public void ChangeWeekendRes(int getal){
+        this.weekendReservedArrivals = getal;
+    }
 
+    public void ChangeEntrySpeed(int getal){
+        this.enterSpeed = getal;
+    }
 
+    public void ChangePaySpeed(int getal){
+        this.paymentSpeed = getal;
+    }
+
+    public void ChangeExitSpeed(int getal){
+        this.exitSpeed = getal;
+    }
+
+    public void setSet(boolean check){
+        this.set = check;
+    }
+
+    public void setStop(boolean stopping)
+    {
+
+        stop = stopping;
+        if(stop)setStart(false);
+    }
+
+    public void setStart(boolean starting)
+    {
+        start = starting;
+    }
 }

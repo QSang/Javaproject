@@ -11,18 +11,18 @@ import Parkeersimulator.view.*;
 public class CarParkMain {
     private JFrame screen;
     private Model model;
-    private AbstractView carParkView;
-    private AbstractView displayQueueView;
-    private AbstractView typeOfCarView;
-
+    private AbstractView carparkview;
 
     private SimulatorController controller;
+    private GegevensController controller2;
 
     public CarParkMain() {
-
         model = new Model();
-
         controller = new SimulatorController(model);
+        controller2 = new GegevensController(model);
+        carparkview = new CarParkView(model);
+        screen = new JFrame("Parkeersimulator");
+        screen.setSize(880, 800);
         carParkView = new CarParkView(model);
         displayQueueView = new DisplayQueueView(model);
         typeOfCarView = new TypeOfCarView(model);
@@ -30,14 +30,18 @@ public class CarParkMain {
         screen = new JFrame("ParkeerGarage Simulator");
         screen.setSize(885, 820 );
         screen.setResizable(false);
-        screen.setLayout(null);
 
-        screen.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.DARK_GRAY));
-        screen.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.DARK_GRAY));
-
-
-        screen.getContentPane().add(carParkView);
+        screen.getContentPane().add(carparkview);
         screen.getContentPane().add(controller);
+        screen.getContentPane().add(controller2);
+        carparkview.setBounds(5, 10, 875, 420);
+        controller.setBounds(-2, 730, 875, 100);
+        controller2.setBounds(5, 440, 875, 100);
+        controller.setBorder(BorderFactory.createLineBorder(Color.black));
+        controller2.setBorder(BorderFactory.createLineBorder(Color.black));
+        carparkview.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        screen.setVisible(true);
         screen.getContentPane().add(displayQueueView);
         screen.getContentPane().add(typeOfCarView);
 
@@ -48,6 +52,7 @@ public class CarParkMain {
         typeOfCarView.setBounds(245, 500, 300, 130);
 
         screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         Color displayQueueBg = new Color(0xDBEEF4);
 
