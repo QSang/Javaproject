@@ -30,6 +30,6 @@ public class CarParkMain {
         controller.setBounds(30,320,910,200);
         screen.setVisible(true);
         screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        model.start();
+
     }
 }

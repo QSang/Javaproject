@@ -2,7 +2,7 @@ package Parkeersimulator.logic;
 
 import java.util.Random;
 
-public class Model extends AbstractModel implements Runnable{
+public class Model extends AbstractModel {
 
     private int numberOfFloors;
     private int numberOfRows;
@@ -24,7 +24,10 @@ public class Model extends AbstractModel implements Runnable{
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 1000;
+    private int tickPause = 250;
+
+    private boolean stop;
+    private boolean start;
 
     int weekDayArrivals=100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -65,35 +68,37 @@ public class Model extends AbstractModel implements Runnable{
         //simulatorView = new SimulatorView(this);
     }
 
-    public void start() {
-        new Thread(this).start();
-    }
-
-    /**
-     * Starts the simulation for 10.000 ticks, each tick representing 1 minute.
-     */
-    public void run() {
-        run = true;
-        for (int i = 0; i < 10000; i++) {
-            tick();
+    public void runCommand(int getal) {
+        //if(stop)setStart(false);
+        int i = getal;
+        if (!start) {
+            setStart(true);
+            while (i > 0) {
+                tick();
+                i--;
+                if (stop) return;
+                if (i <= 0) setStart(false);
+            }
         }
     }
-
     /**
      * Progressess the application for 1 minute.
      */
-    public void tick() {
-        advanceTime();
-        handleExit();
-        updateViews();
-        // Pause.
-        try {
-            Thread.sleep(tickPause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        handleEntrance();
-    }
+            private void tick()
+            {
+                advanceTime();
+                handleExit();
+                updateViews();
+
+                // Pause.
+                try {
+                    Thread.sleep(tickPause);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                handleEntrance();
+
+            }
 
     /**
      * Advance the time by one minute.
@@ -467,6 +472,17 @@ public class Model extends AbstractModel implements Runnable{
         return true;
     }
 
+            public void setStop(boolean stopping)
+            {
+
+                stop = stopping;
+                if(stop)setStart(false);
+            }
+
+            public void setStart(boolean starting)
+            {
+                start = starting;
+            }
 
 
 }
