@@ -9,13 +9,11 @@ import javax.swing.*;
 
 public class SimulatorController extends AbstractController implements ActionListener
 {
-    private JButton steps,startButton, stopButton;
-    private JLabel insertSteps;
-    private JTextField stepsField;
+    private JButton startButton, stopButton;
+
     private JButton oneStepButton;
     private JButton hundredStepsButton;
-    private JButton startButton;
-    private JButton stopButton;
+
     private ActionEvent event;
 
     public SimulatorController(Model model){
@@ -29,9 +27,6 @@ public class SimulatorController extends AbstractController implements ActionLis
         startButton.addActionListener(this);
         stopButton = new JButton("Stop");
         stopButton.addActionListener(this);
-
-
-
 
         stopButton.setBounds(670,0,70,20);
         startButton.setBounds(410,0,70,20);
@@ -74,14 +69,12 @@ public class SimulatorController extends AbstractController implements ActionLis
                 String command = e.getActionCommand();
                 model.setStop(false);
                 if (command == "One Step"){
-                    model.runCommand(1);
                 }
                 if (command == "Hundred Steps"){
-                    model.runCommand(100);
                 }
                 if (command == "Start"){
 
-                    model.runCommand(100000);
+                    model.run();
                 }
                 if (command == "Stop"){
 
