@@ -28,6 +28,7 @@ public class Model extends AbstractModel {
 
     private boolean stop;
     private boolean start;
+    private boolean set;
 
     int weekDayArrivals=100; // average number of arriving cars per hour
     int weekendArrivals = 200; // average number of arriving cars per hour
@@ -44,8 +45,6 @@ public class Model extends AbstractModel {
 
     double price;
     double priceReduced;
-
-    public boolean run;
 
     public Model() {
         this.numberOfFloors = 3;
@@ -471,17 +470,50 @@ public class Model extends AbstractModel {
         return true;
     }
 
-            public void setStop(boolean stopping)
-            {
+    public void ChangeWeekAr(int getal){
+        this.weekDayArrivals = getal;
+    }
+    public void ChangeWeekendAr(int getal){
+        this.weekendArrivals  = getal;
+    }
+    public void ChangeWeekP(int getal){
+        this.weekDayPassArrivals = getal;
+    }
+    public void ChangeWeekendP(int getal){
+        this.weekendPassArrivals = getal;
+    }
+    public void ChangeWeekRes(int getal){
+        this.weekDayReservedArrivals = getal;
+    }
+    public void ChangeWeekendRes(int getal){
+        this.weekendReservedArrivals = getal;
+    }
 
-                stop = stopping;
-                if(stop)setStart(false);
-            }
+    public void ChangeEntrySpeed(int getal){
+        this.enterSpeed = getal;
+    }
 
-            public void setStart(boolean starting)
-            {
-                start = starting;
-            }
+    public void ChangePaySpeed(int getal){
+        this.paymentSpeed = getal;
+    }
 
+    public void ChangeExitSpeed(int getal){
+        this.exitSpeed = getal;
+    }
 
+    public void setSet(boolean check){
+        this.set = check;
+    }
+
+    public void setStop(boolean stopping)
+    {
+
+        stop = stopping;
+        if(stop)setStart(false);
+    }
+
+    public void setStart(boolean starting)
+    {
+        start = starting;
+    }
 }

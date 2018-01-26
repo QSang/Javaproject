@@ -28,12 +28,12 @@ public class SimulatorController extends AbstractController implements ActionLis
         stopButton.addActionListener(this);
 
 
-        this.setLayout(null);
+
 
         stopButton.setBounds(670,0,70,20);
         startButton.setBounds(410,0,70,20);
         oneStepButton.setBounds(10,0,200,20);
-        hundredStepsButton.setBounds(10,20,75,20);
+        hundredStepsButton.setBounds(10,20,200,20);
         add(startButton);
         add(stopButton);
         add(oneStepButton);

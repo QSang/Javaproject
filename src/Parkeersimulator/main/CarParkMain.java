@@ -1,9 +1,10 @@
 package Parkeersimulator.main;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
+import Parkeersimulator.controller.GegevensController;
 import Parkeersimulator.controller.SimulatorController;
 import Parkeersimulator.logic.Model;
 import Parkeersimulator.view.AbstractView;
@@ -15,19 +16,27 @@ public class CarParkMain {
     private AbstractView carparkview;
 
     private SimulatorController controller;
+    private GegevensController controller2;
 
     public CarParkMain() {
         model = new Model();
         controller = new SimulatorController(model);
+        controller2 = new GegevensController(model);
         carparkview = new CarParkView(model);
         screen = new JFrame("Parkeersimulator");
-        screen.setSize(1200, 600);
+        screen.setSize(880, 800);
         screen.setResizable(false);
 
         screen.getContentPane().add(carparkview);
         screen.getContentPane().add(controller);
-        carparkview.setBounds(260,30,900,500);
-        controller.setBounds(30,320,910,200);
+        screen.getContentPane().add(controller2);
+        carparkview.setBounds(5, 10, 875, 420);
+        controller.setBounds(-2, 730, 875, 100);
+        controller2.setBounds(5, 440, 875, 100);
+        controller.setBorder(BorderFactory.createLineBorder(Color.black));
+        controller2.setBorder(BorderFactory.createLineBorder(Color.black));
+        carparkview.setBorder(BorderFactory.createLineBorder(Color.black));
+
         screen.setVisible(true);
         screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
