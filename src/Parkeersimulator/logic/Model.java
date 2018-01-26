@@ -2,7 +2,7 @@ package Parkeersimulator.logic;
 
 import java.util.Random;
 
-public class Model extends AbstractModel implements Runnable {
+public class Model extends AbstractModel {
 
     private int numberOfFloors;
     private int numberOfRows;
@@ -70,15 +70,20 @@ public class Model extends AbstractModel implements Runnable {
         priceReduced = 2.0;
         turnoverTotal = 0.0;
 
-        //simulatorView = new SimulatorView(this);
     }
-    public void run() {
-        run = true;
-        for (int i = 0; i < 10000; i++) {
-            tick();
+    public void runCommand(int getal) {
+        //if(stop)setStart(false);
+        int i = getal;
+        if (!start) {
+            setStart(true);
+            while (i > 0) {
+                tick();
+                i--;
+                if (stop) return;
+                if (i <= 0) setStart(false);
+            }
         }
     }
-
 
     /**
      * Progressess the application for 1 minute.

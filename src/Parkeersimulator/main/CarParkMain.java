@@ -24,10 +24,10 @@ public class CarParkMain {
 
         controller = new SimulatorController(model);
         controller2 = new GegevensController(model);
-        carParkView = new CarParkView(model);
 
         screen = new JFrame("Parkeersimulator");
         screen.setSize(880, 800);
+
         carParkView = new CarParkView(model);
         displayQueueView = new DisplayQueueView(model);
         typeOfCarView = new TypeOfCarView(model);
@@ -37,6 +37,10 @@ public class CarParkMain {
         screen.setLayout(null);
 
         screen.getContentPane().add(carParkView);
+        screen.getContentPane().add(displayQueueView);
+        screen.getContentPane().add(typeOfCarView);
+
+
         screen.getContentPane().add(controller);
         screen.getContentPane().add(controller2);
 
@@ -44,11 +48,9 @@ public class CarParkMain {
         controller2.setBorder(BorderFactory.createLineBorder(Color.black));
         carParkView.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        screen.getContentPane().add(displayQueueView);
-        screen.getContentPane().add(typeOfCarView);
 
-        controller.setBounds(-2, 730, 875, 100);
-        controller2.setBounds(5, 440, 875, 100);
+        controller.setBounds(-2, 730, 875, 500);
+        controller2.setBounds(5, 440, 200, 280);
 
         carParkView.setBounds(5,10,860,420);
         displayQueueView.setBounds(245,640,300,80);
