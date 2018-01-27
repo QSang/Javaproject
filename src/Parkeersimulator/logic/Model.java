@@ -142,7 +142,6 @@ public class Model extends AbstractModel {
     public void updateViews() {
         tick(turnoverTotal);
         notifyView();
-        System.out.println("Exit Queue: " + exitCarQueue.carsInQueue() + "Entrance Queue: " + entrancePassQueue.carsInQueue() + "Entrance Pass Queue:" + entranceCarQueue.carsInQueue());
     }
 
     /**

@@ -89,8 +89,8 @@ import Parkeersimulator.logic.*;
             txtTotalRevenue.setEditable(false);
             txtTotalRevenue.setOpaque(false);
             txtTotalRevenue.setBorder(BorderFactory.createLineBorder(Color.black,1));
-                    add(lblTotalRevenue);
-                    add(txtTotalRevenue);
+            add(lblTotalRevenue);
+            add(txtTotalRevenue);
 
             calcRevenue();
             calcExpRevenue();
@@ -121,7 +121,6 @@ import Parkeersimulator.logic.*;
             calcExpRevenue();
 
         }
-
         /**
          * calculates the revenue
          */
@@ -139,9 +138,9 @@ import Parkeersimulator.logic.*;
          */
         public void calcExpRevenue(){
 
-            int totalCars = CarParkView.GetAdHoc();
+            int totalCurrentCars = CarParkView.GetAdHoc();
 
-            double currentRevenue = totalCars * ticketPrice;
+            double currentRevenue = totalCurrentCars * ticketPrice;
 
             txtCurrentRevenue.setText(" € "+currentRevenue+"0");
         }

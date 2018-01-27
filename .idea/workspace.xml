@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9655d0e0-1520-4a80-8f7b-03dc189f4d3c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Parkeersimulator/logic/AdHocCar.java" afterPath="$PROJECT_DIR$/src/Parkeersimulator/logic/AdHocCar.java" />
       <change beforePath="$PROJECT_DIR$/src/Parkeersimulator/logic/Model.java" afterPath="$PROJECT_DIR$/src/Parkeersimulator/logic/Model.java" />
-      <change beforePath="$PROJECT_DIR$/src/Parkeersimulator/logic/ParkingPassCar.java" afterPath="$PROJECT_DIR$/src/Parkeersimulator/logic/ParkingPassCar.java" />
-      <change beforePath="$PROJECT_DIR$/src/Parkeersimulator/main/CarParkMain.java" afterPath="$PROJECT_DIR$/src/Parkeersimulator/main/CarParkMain.java" />
       <change beforePath="$PROJECT_DIR$/src/Parkeersimulator/view/DisplayQueueView.java" afterPath="$PROJECT_DIR$/src/Parkeersimulator/view/DisplayQueueView.java" />
-      <change beforePath="$PROJECT_DIR$/src/Parkeersimulator/view/PieView.java" afterPath="$PROJECT_DIR$/src/Parkeersimulator/view/PieView.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DisplayQueueView.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DisplayQueueView.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Parkeersimulator/view/DisplayQueueView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="85" column="92" lean-forward="true" selection-start-line="85" selection-start-column="92" selection-end-line="85" selection-end-column="92" />
+            <state relative-caret-position="285">
+              <caret line="122" column="9" lean-forward="false" selection-start-line="122" selection-start-column="9" selection-end-line="122" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -74,52 +70,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Parkeersimulator/logic/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1401">
-              <caret line="285" column="5" lean-forward="true" selection-start-line="285" selection-start-column="5" selection-end-line="285" selection-end-column="5" />
+            <state relative-caret-position="180">
+              <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
               <folding>
-                <element signature="e#9547#9548#0" expanded="true" />
-                <element signature="e#9587#9588#0" expanded="true" />
-                <element signature="e#9713#9714#0" expanded="true" />
-                <element signature="e#9761#9762#0" expanded="true" />
-                <element signature="e#14677#14678#0" expanded="true" />
-                <element signature="e#14707#14708#0" expanded="true" />
-                <element signature="e#14748#14749#0" expanded="true" />
-                <element signature="e#14778#14779#0" expanded="true" />
-                <element signature="e#14816#14817#0" expanded="true" />
-                <element signature="e#14853#14854#0" expanded="true" />
-                <element signature="e#14886#14887#0" expanded="true" />
-                <element signature="e#14918#14919#0" expanded="true" />
-                <element signature="e#14954#14955#0" expanded="true" />
-                <element signature="e#14989#14990#0" expanded="true" />
-                <element signature="e#15023#15024#0" expanded="true" />
-                <element signature="e#15056#15057#0" expanded="true" />
-                <element signature="e#15200#15201#0" expanded="true" />
-                <element signature="e#15243#15244#0" expanded="true" />
-                <element signature="e#15942#15943#0" expanded="true" />
-                <element signature="e#15994#15995#0" expanded="true" />
-                <element signature="e#16044#16045#0" expanded="true" />
-                <element signature="e#16096#16097#0" expanded="true" />
-                <element signature="e#16142#16143#0" expanded="true" />
-                <element signature="e#16198#16199#0" expanded="true" />
-                <element signature="e#16247#16248#0" expanded="true" />
-                <element signature="e#16303#16304#0" expanded="true" />
-                <element signature="e#16351#16352#0" expanded="true" />
-                <element signature="e#16411#16412#0" expanded="true" />
-                <element signature="e#16462#16463#0" expanded="true" />
-                <element signature="e#16522#16523#0" expanded="true" />
-                <element signature="e#16574#16575#0" expanded="true" />
-                <element signature="e#16621#16622#0" expanded="true" />
-                <element signature="e#16671#16672#0" expanded="true" />
-                <element signature="e#16720#16721#0" expanded="true" />
-                <element signature="e#16771#16772#0" expanded="true" />
-                <element signature="e#16817#16818#0" expanded="true" />
-                <element signature="e#16863#16864#0" expanded="true" />
-                <element signature="e#16903#16904#0" expanded="true" />
-                <element signature="e#17132#17133#0" expanded="true" />
-                <element signature="e#17172#17173#0" expanded="true" />
+                <element signature="e#9361#9362#0" expanded="true" />
+                <element signature="e#9401#9402#0" expanded="true" />
+                <element signature="e#9527#9528#0" expanded="true" />
+                <element signature="e#9575#9576#0" expanded="true" />
+                <element signature="e#14491#14492#0" expanded="true" />
+                <element signature="e#14521#14522#0" expanded="true" />
+                <element signature="e#14562#14563#0" expanded="true" />
+                <element signature="e#14592#14593#0" expanded="true" />
+                <element signature="e#14630#14631#0" expanded="true" />
+                <element signature="e#14667#14668#0" expanded="true" />
+                <element signature="e#14700#14701#0" expanded="true" />
+                <element signature="e#14732#14733#0" expanded="true" />
+                <element signature="e#14768#14769#0" expanded="true" />
+                <element signature="e#14803#14804#0" expanded="true" />
+                <element signature="e#14837#14838#0" expanded="true" />
+                <element signature="e#14870#14871#0" expanded="true" />
+                <element signature="e#15014#15015#0" expanded="true" />
+                <element signature="e#15057#15058#0" expanded="true" />
+                <element signature="e#15756#15757#0" expanded="true" />
+                <element signature="e#15808#15809#0" expanded="true" />
+                <element signature="e#15858#15859#0" expanded="true" />
+                <element signature="e#15910#15911#0" expanded="true" />
+                <element signature="e#15956#15957#0" expanded="true" />
+                <element signature="e#16012#16013#0" expanded="true" />
+                <element signature="e#16061#16062#0" expanded="true" />
+                <element signature="e#16117#16118#0" expanded="true" />
+                <element signature="e#16165#16166#0" expanded="true" />
+                <element signature="e#16225#16226#0" expanded="true" />
+                <element signature="e#16276#16277#0" expanded="true" />
+                <element signature="e#16336#16337#0" expanded="true" />
+                <element signature="e#16388#16389#0" expanded="true" />
+                <element signature="e#16435#16436#0" expanded="true" />
+                <element signature="e#16485#16486#0" expanded="true" />
+                <element signature="e#16534#16535#0" expanded="true" />
+                <element signature="e#16585#16586#0" expanded="true" />
+                <element signature="e#16631#16632#0" expanded="true" />
+                <element signature="e#16677#16678#0" expanded="true" />
+                <element signature="e#16717#16718#0" expanded="true" />
+                <element signature="e#16946#16947#0" expanded="true" />
+                <element signature="e#16986#16987#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -207,8 +203,8 @@
       <find>carspaying</find>
       <find>price</find>
       <find>payingCars</find>
-      <find>totalCars</find>
       <find>exitIndex</find>
+      <find>totalCars</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -230,8 +226,8 @@
         <option value="$PROJECT_DIR$/src/Parkeersimulator/logic/AdHocCar.java" />
         <option value="$PROJECT_DIR$/src/Parkeersimulator/logic/ParkingPassCar.java" />
         <option value="$PROJECT_DIR$/src/Parkeersimulator/main/CarParkMain.java" />
-        <option value="$PROJECT_DIR$/src/Parkeersimulator/logic/Model.java" />
         <option value="$PROJECT_DIR$/src/Parkeersimulator/view/DisplayQueueView.java" />
+        <option value="$PROJECT_DIR$/src/Parkeersimulator/logic/Model.java" />
       </list>
     </option>
   </component>
@@ -482,7 +478,14 @@
       <option name="project" value="LOCAL" />
       <updated>1517072694703</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added all the branches">
+      <created>1517088999865</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1517088999897</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -523,7 +526,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge branch 'master' of https://github.com/QSang/Project-Parkeergarage&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="removed workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed workspace.xml" />
+    <MESSAGE value="Added all the branches" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added all the branches" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -744,61 +748,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Parkeersimulator/logic/Model.java">
+    <entry file="file://$PROJECT_DIR$/src/Parkeersimulator/view/DisplayQueueView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1401">
-          <caret line="285" column="5" lean-forward="true" selection-start-line="285" selection-start-column="5" selection-end-line="285" selection-end-column="5" />
+        <state relative-caret-position="285">
+          <caret line="122" column="9" lean-forward="false" selection-start-line="122" selection-start-column="9" selection-end-line="122" selection-end-column="9" />
           <folding>
-            <element signature="e#9547#9548#0" expanded="true" />
-            <element signature="e#9587#9588#0" expanded="true" />
-            <element signature="e#9713#9714#0" expanded="true" />
-            <element signature="e#9761#9762#0" expanded="true" />
-            <element signature="e#14677#14678#0" expanded="true" />
-            <element signature="e#14707#14708#0" expanded="true" />
-            <element signature="e#14748#14749#0" expanded="true" />
-            <element signature="e#14778#14779#0" expanded="true" />
-            <element signature="e#14816#14817#0" expanded="true" />
-            <element signature="e#14853#14854#0" expanded="true" />
-            <element signature="e#14886#14887#0" expanded="true" />
-            <element signature="e#14918#14919#0" expanded="true" />
-            <element signature="e#14954#14955#0" expanded="true" />
-            <element signature="e#14989#14990#0" expanded="true" />
-            <element signature="e#15023#15024#0" expanded="true" />
-            <element signature="e#15056#15057#0" expanded="true" />
-            <element signature="e#15200#15201#0" expanded="true" />
-            <element signature="e#15243#15244#0" expanded="true" />
-            <element signature="e#15942#15943#0" expanded="true" />
-            <element signature="e#15994#15995#0" expanded="true" />
-            <element signature="e#16044#16045#0" expanded="true" />
-            <element signature="e#16096#16097#0" expanded="true" />
-            <element signature="e#16142#16143#0" expanded="true" />
-            <element signature="e#16198#16199#0" expanded="true" />
-            <element signature="e#16247#16248#0" expanded="true" />
-            <element signature="e#16303#16304#0" expanded="true" />
-            <element signature="e#16351#16352#0" expanded="true" />
-            <element signature="e#16411#16412#0" expanded="true" />
-            <element signature="e#16462#16463#0" expanded="true" />
-            <element signature="e#16522#16523#0" expanded="true" />
-            <element signature="e#16574#16575#0" expanded="true" />
-            <element signature="e#16621#16622#0" expanded="true" />
-            <element signature="e#16671#16672#0" expanded="true" />
-            <element signature="e#16720#16721#0" expanded="true" />
-            <element signature="e#16771#16772#0" expanded="true" />
-            <element signature="e#16817#16818#0" expanded="true" />
-            <element signature="e#16863#16864#0" expanded="true" />
-            <element signature="e#16903#16904#0" expanded="true" />
-            <element signature="e#17132#17133#0" expanded="true" />
-            <element signature="e#17172#17173#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Parkeersimulator/view/DisplayQueueView.java">
+    <entry file="file://$PROJECT_DIR$/src/Parkeersimulator/logic/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="85" column="92" lean-forward="true" selection-start-line="85" selection-start-column="92" selection-end-line="85" selection-end-column="92" />
+        <state relative-caret-position="180">
+          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#9361#9362#0" expanded="true" />
+            <element signature="e#9401#9402#0" expanded="true" />
+            <element signature="e#9527#9528#0" expanded="true" />
+            <element signature="e#9575#9576#0" expanded="true" />
+            <element signature="e#14491#14492#0" expanded="true" />
+            <element signature="e#14521#14522#0" expanded="true" />
+            <element signature="e#14562#14563#0" expanded="true" />
+            <element signature="e#14592#14593#0" expanded="true" />
+            <element signature="e#14630#14631#0" expanded="true" />
+            <element signature="e#14667#14668#0" expanded="true" />
+            <element signature="e#14700#14701#0" expanded="true" />
+            <element signature="e#14732#14733#0" expanded="true" />
+            <element signature="e#14768#14769#0" expanded="true" />
+            <element signature="e#14803#14804#0" expanded="true" />
+            <element signature="e#14837#14838#0" expanded="true" />
+            <element signature="e#14870#14871#0" expanded="true" />
+            <element signature="e#15014#15015#0" expanded="true" />
+            <element signature="e#15057#15058#0" expanded="true" />
+            <element signature="e#15756#15757#0" expanded="true" />
+            <element signature="e#15808#15809#0" expanded="true" />
+            <element signature="e#15858#15859#0" expanded="true" />
+            <element signature="e#15910#15911#0" expanded="true" />
+            <element signature="e#15956#15957#0" expanded="true" />
+            <element signature="e#16012#16013#0" expanded="true" />
+            <element signature="e#16061#16062#0" expanded="true" />
+            <element signature="e#16117#16118#0" expanded="true" />
+            <element signature="e#16165#16166#0" expanded="true" />
+            <element signature="e#16225#16226#0" expanded="true" />
+            <element signature="e#16276#16277#0" expanded="true" />
+            <element signature="e#16336#16337#0" expanded="true" />
+            <element signature="e#16388#16389#0" expanded="true" />
+            <element signature="e#16435#16436#0" expanded="true" />
+            <element signature="e#16485#16486#0" expanded="true" />
+            <element signature="e#16534#16535#0" expanded="true" />
+            <element signature="e#16585#16586#0" expanded="true" />
+            <element signature="e#16631#16632#0" expanded="true" />
+            <element signature="e#16677#16678#0" expanded="true" />
+            <element signature="e#16717#16718#0" expanded="true" />
+            <element signature="e#16946#16947#0" expanded="true" />
+            <element signature="e#16986#16987#0" expanded="true" />
           </folding>
         </state>
       </provider>
