@@ -104,8 +104,6 @@ import Parkeersimulator.logic.*;
 
             exitIndex = model.getExitIndex();
             totalCarsIndex = model.getTotalCarsIndex();
-            currentRevenue = model.getPayCashIndex();
-            totalRevenue = model.getPayPassIndex();
 
             txtEntranceQueue.setText("   "+ CarParkView.GetAdHoc());
             txtEntrancePassQueue.setText("   "+ CarParkView.GetParkPass());

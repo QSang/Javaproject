@@ -17,8 +17,6 @@ public class ParkingPassCar extends Car {
         this.setHasToPay(false);
         this.setHasReserved(false);
         this.setHasReducedPrice(true);
-        Model.addPassIndex();
-
     }
 
     /**

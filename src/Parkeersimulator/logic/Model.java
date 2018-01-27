@@ -45,8 +45,6 @@ public class Model extends AbstractModel {
     double price;
     double priceReduced;
 
-    private static int payCashIndex = 0;
-    private static int payPassIndex = 0;
     private static int totalCarsIndex = 0;
     private static int exitIndex = 0;
     private static int payingCars = 0;
@@ -454,13 +452,6 @@ public class Model extends AbstractModel {
         String text = String.format("%.2f", (double) turnoverTotal);
     }
 
-    public static void addCashIndex() {
-        payCashIndex++;
-    }
-
-    public static void addPassIndex() {
-        payPassIndex++;
-    }
 
     public int getTotalCarsIndex() {
         return totalCarsIndex;
@@ -470,9 +461,6 @@ public class Model extends AbstractModel {
         return exitIndex;
     }
 
-    public int getPayPassIndex() {
-        return payPassIndex;
-    }
 
     public int getPayingCars() {
         return payingCars;
@@ -481,9 +469,7 @@ public class Model extends AbstractModel {
          * Getter for the pay cash index.
          * @return int pay cash index.
          */
-        public int getPayCashIndex() {
-            return payCashIndex;
-        }
+
 
         /**
          * Checks if location is within the given bounds of the car park.
