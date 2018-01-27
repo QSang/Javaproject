@@ -9,8 +9,18 @@ import Parkeersimulator.logic.*;
         private JTextField txtEntranceQueue;
         private JTextField txtEntrancePassQueue;
         private JTextField txtExitQueue;
+        private JTextField txtTotalCars;
+        private JTextField txtCurrentRevenue;
+        private JTextField txtTotalRevenue;
+
+
         private Model model;
 
+        private int exitIndex;
+        private int totalCarsIndex;
+        private int currentRevenue;
+        private int totalRevenue;
+        double ticketPrice = 5.0;
         /**
          * Constructor for TextOverview
          */
@@ -21,7 +31,7 @@ import Parkeersimulator.logic.*;
             /**
              * Entrance Queue JTextField and JLabel
              */
-            JLabel lblEntranceQueue = new JLabel("Entrance Queue:                                    ");
+            JLabel lblEntranceQueue = new JLabel("Entrance Car Queue:                            ");
             txtEntranceQueue = new JTextField("   0");
             txtEntranceQueue.setColumns(4);
             txtEntranceQueue.setOpaque(false);
@@ -46,7 +56,7 @@ import Parkeersimulator.logic.*;
             /**
              * Exit Queue JTextField and JLabel
              */
-            JLabel lblExitQueue = new JLabel("Exit Queue:                                              ");
+            JLabel lblExitQueue = new JLabel("Exit Cars Queue:                                    ");
             txtExitQueue = new JTextField("   0");
             txtExitQueue.setColumns(4);
             txtExitQueue.setEditable(false);
@@ -54,40 +64,85 @@ import Parkeersimulator.logic.*;
             txtExitQueue.setBorder(BorderFactory.createLineBorder(Color.black,1));
             add(lblExitQueue);
             add(txtExitQueue);
-        }
+
+            JLabel lblTotalCars = new JLabel("Total cars used:                                     ");
+            txtTotalCars = new JTextField("   0");
+            txtTotalCars.setColumns(4);
+            txtTotalCars.setEditable(false);
+            txtTotalCars.setOpaque(false);
+            txtTotalCars.setBorder(BorderFactory.createLineBorder(Color.black,1));
+            add(lblTotalCars);
+            add(txtTotalCars);
+
+        JLabel lblCurrentRevenue = new JLabel("Current Revenue:                                  ");
+            txtCurrentRevenue = new JTextField("   0");
+            txtCurrentRevenue.setColumns(4);
+            txtCurrentRevenue.setEditable(false);
+            txtCurrentRevenue.setOpaque(false);
+            txtCurrentRevenue.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        add(lblCurrentRevenue);
+        add(txtCurrentRevenue);
+
+        JLabel lblTotalRevenue = new JLabel("Total Revenue:                                       ");
+            txtTotalRevenue = new JTextField("   0");
+            txtTotalRevenue.setColumns(4);
+            txtTotalRevenue.setEditable(false);
+            txtTotalRevenue.setOpaque(false);
+            txtTotalRevenue.setBorder(BorderFactory.createLineBorder(Color.black,1));
+                    add(lblTotalRevenue);
+                    add(txtTotalRevenue);
+
+            calcRevenue();
+            calcExpRevenue();
+            }
 
         /**
          * Updates the view so the numbers inside the textfield change accordingly
          */
         public void updateView(){
-            entranceQueue();
-            entrancePassQueue();
-            exitQueue();
+            Model model = (Model) super.model;
+
+            exitIndex = model.getExitIndex();
+            totalCarsIndex = model.getTotalCarsIndex();
+            currentRevenue = model.getPayCashIndex();
+            totalRevenue = model.getPayPassIndex();
+
+            txtEntranceQueue.setText("   "+ CarParkView.GetAdHoc());
+            txtEntrancePassQueue.setText("   "+ CarParkView.GetParkPass());
+            txtExitQueue.setText("   "+ exitIndex);
+            txtTotalCars.setText("   "+ totalCarsIndex);
+            txtCurrentRevenue.setText("   "+ currentRevenue);
+            txtTotalRevenue.setText("   "+ totalRevenue);
+
+            setVisible(true);
+
+            super.updateView();
+            calcRevenue();
+            calcExpRevenue();
+
         }
 
         /**
-         * Fill Entrance Queue text field
+         * calculates the revenue
          */
 
-        public void entranceQueue() {
-            int entranceQueue = model.getEntranceCarQueue();
-            txtEntranceQueue.setText("   "+entranceQueue);
+        public void calcRevenue()
+        {
+            int totalCars = model.getPayingCars();
+            double totalRevenue = totalCars * ticketPrice;
+
+            txtTotalRevenue.setText(" € "+totalRevenue+"0");
+
         }
-
         /**
-         * Fill Entrance Pass Queue text field
+         * Calculates the expected Revenue of cars which still have to pay.
          */
+        public void calcExpRevenue(){
 
-        public void entrancePassQueue() {
-            int entrancePassQueue = model.getPassCarQueue();
-            txtEntrancePassQueue.setText("   "+entrancePassQueue);
-        }
+            int totalCars = CarParkView.GetAdHoc();
 
-        /**
-         * Fill Exit Queue text field
-         */
-        public void exitQueue() {
-            int exitQueue = model.getExitCarQueue();
-            txtExitQueue.setText("   "+exitQueue);
+            double currentRevenue = totalCars * ticketPrice;
+
+            txtCurrentRevenue.setText(" € "+currentRevenue+"0");
         }
     }

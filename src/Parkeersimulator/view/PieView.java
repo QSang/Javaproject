@@ -37,7 +37,6 @@ public class PieView extends AbstractView {
         aantalAdHoc = CarParkView.GetAdHoc();
         aantalPassCar = CarParkView.GetParkPass();
         aantalEmpty = 540 - aantalPassCar - aantalAdHoc;
-        System.out.println("AdHoc:" + aantalAdHoc + " PassCar:" + aantalPassCar  + " EmptySpot: " + aantalEmpty);
 
         a.setColor(Color.white);
         a.fillArc(15, 15, 250, 250, 350, 360);

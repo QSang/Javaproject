@@ -44,7 +44,6 @@ public class CarParkMain {
         screen.getContentPane().add(typeOfCarView);
         screen.getContentPane().add(pieView);
 
-
         screen.getContentPane().add(controller);
         screen.getContentPane().add(controller2);
 
@@ -59,8 +58,8 @@ public class CarParkMain {
         controller2.setBounds(5, 440, 200, 280);
 
         carParkView.setBounds(5,10,860,420);
-        displayQueueView.setBounds(245,640,300,80);
-        typeOfCarView.setBounds(245, 500, 300, 130);
+        typeOfCarView.setBounds(245, 440, 300, 130);
+        displayQueueView.setBounds(245,580,300,145);
         pieView.setBounds(585, 440, 280, 280);
         Color displayQueueBg = new Color(0xDBEEF4);
 
