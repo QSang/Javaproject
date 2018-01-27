@@ -17,7 +17,7 @@ public class PieView extends AbstractView {
         setSize(300,300);
     }
 
-    public int calculateDegrees(double aantalCars)
+    private int calculateDegrees(double aantalCars)
     {
         int degrees;
         double garageSize = 540;
@@ -25,7 +25,6 @@ public class PieView extends AbstractView {
         degrees = (int) (((100 / garageSize) * aantalCars) * 3.6);
 
         return degrees;
-
     }
 
     /**
@@ -38,17 +37,15 @@ public class PieView extends AbstractView {
         aantalPassCar = CarParkView.GetParkPass();
         aantalEmpty = 540 - aantalPassCar - aantalAdHoc;
 
-        a.setColor(Color.white);
-        a.fillArc(15, 15, 250, 250, 350, 360);
-
         a.setColor(Color.red);
         a.fillArc(15, 15, 250, 250, 0, calculateDegrees(aantalAdHoc));
+
         a.setColor(Color.decode("#0077FF"));
         a.fillArc(15, 15, 250, 250, calculateDegrees(aantalAdHoc), calculateDegrees(aantalPassCar));
 
         a.setColor(Color.white);
-        a.fillArc(15, 15, 250, 250, calculateDegrees(aantalAdHoc) +
+        a.fillArc(15, 15, 250, 250, calculateDegrees(aantalAdHoc) + calculateDegrees(aantalPassCar), calculateDegrees(aantalEmpty));
 
-        calculateDegrees(aantalPassCar), calculateDegrees(aantalEmpty));
+        updateView();
     }
 }
