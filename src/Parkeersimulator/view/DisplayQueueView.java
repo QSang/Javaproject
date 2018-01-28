@@ -18,8 +18,6 @@ import Parkeersimulator.logic.*;
 
         private int exitIndex;
         private int totalCarsIndex;
-        private int currentRevenue;
-        private int totalRevenue;
         double ticketPrice = 5.0;
         /**
          * Constructor for TextOverview
@@ -109,8 +107,6 @@ import Parkeersimulator.logic.*;
             txtEntrancePassQueue.setText("   "+ CarParkView.GetParkPass());
             txtExitQueue.setText("   "+ exitIndex);
             txtTotalCars.setText("   "+ totalCarsIndex);
-            txtCurrentRevenue.setText("   "+ currentRevenue);
-            txtTotalRevenue.setText("   "+ totalRevenue);
 
             setVisible(true);
 
