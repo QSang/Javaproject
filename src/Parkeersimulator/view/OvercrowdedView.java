@@ -2,6 +2,7 @@ package Parkeersimulator.view;
 
 
 import Parkeersimulator.logic.Model;
+import Parkeersimulator.logic.*;
 
 import java.awt.*;
 
@@ -32,7 +33,7 @@ public class OvercrowdedView extends AbstractView {
     protected void paintComponent(Graphics a) {
         super.paintComponent(a);
 
-        aantalQueueCars = model.getEntranceCarQueue() + model.getPassCarQueue();
+
         maxAantalQueue = 5;
 
         if(maxAantalQueue < aantalQueueCars){
