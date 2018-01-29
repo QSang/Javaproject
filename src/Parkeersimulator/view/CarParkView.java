@@ -120,4 +120,8 @@ public class CarParkView extends AbstractView {
         return ParkPassCar;
     }
 
+    public static int GetReserveringCars(){
+        return ReserveringCar;
+    }
+
 }
