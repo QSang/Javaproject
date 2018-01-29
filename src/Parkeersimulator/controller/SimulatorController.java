@@ -7,78 +7,91 @@ import Parkeersimulator.main.CarParkMain;
 
 import javax.swing.*;
 
-public class SimulatorController extends AbstractController implements ActionListener
-{
-    private JButton steps, startButton,stopButton;
-    private JLabel insertSteps;
-    private JTextField stepsField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import Parkeersimulator.logic.Model;
+import Parkeersimulator.main.CarParkMain;
 
-    public SimulatorController(Model model){
-        super(model);
+import javax.swing.*;
 
-        insertSteps = new JLabel("insertSteps");
-        stepsField = new JTextField("");
-        steps = new JButton("Total Steps");
-        steps.addActionListener(this);
-        stepsField.addActionListener(this);
-        startButton = new JButton("startButton");
-        startButton.addActionListener(this);
-        stopButton = new JButton("stopButton");
-        stopButton.addActionListener(this);
+    public class SimulatorController extends AbstractController implements ActionListener {
+        private JButton oneStepButton;
+        private JButton hundredStepsButton;
+        private JButton startButton;
+        private JButton stopButton;
+        private ActionEvent event;
+
+        public SimulatorController(Model model) {
+            super(model);
+
+            oneStepButton = new JButton("One Step");
+            oneStepButton.addActionListener(this);
+            hundredStepsButton = new JButton("Hundred Steps");
+            hundredStepsButton.addActionListener(this);
+            startButton = new JButton("Start");
+            startButton.addActionListener(this);
+            stopButton = new JButton("Stop");
+            stopButton.addActionListener(this);
 
 
-        this.setLayout(null);
-
-        stopButton.setBounds(670,0,70,20);
-        startButton.setBounds(410,0,70,20);
-        insertSteps.setBounds(10,0,200,20);
-        stepsField.setBounds(10,20,75,20);
-        steps.setBounds(110,20,70,20);
-        add(startButton);
-        add(stopButton);
-        add(steps);
-        add(insertSteps);
-        add(stepsField);
-        setVisible(true);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == steps){
-            this.startStepPressed();
+            stopButton.setBounds(670, 0, 70, 20);
+            startButton.setBounds(410, 0, 70, 20);
+            oneStepButton.setBounds(10, 0, 200, 20);
+            hundredStepsButton.setBounds(10, 20, 200, 20);
+            add(startButton);
+            add(stopButton);
+            add(oneStepButton);
+            add(hundredStepsButton);
+            setVisible(true);
         }
-        else if (e.getSource() == startButton){
-            this.startPressed();
+
+        public void setActionEvent(ActionEvent e) {
+            event = e;
         }
-        else if (e.getSource() == stopButton){
-            this.stopPressed();
+
+        /**
+         * returns the set event
+         *
+         * @return event
+         */
+
+        public ActionEvent getActionEvent() {
+            return event;
+        }
+
+
+        public void actionPerformed(ActionEvent e) {
+
+            //sets the received actionEvent, and creates a new thread
+            setActionEvent(e);
+            Thread performerThread = new Thread() {
+
+                /**
+                 * Creates the commands that the buttons execute
+                 */
+
+                public void run() {
+                    ActionEvent e = getActionEvent();
+                    String command = e.getActionCommand();
+                    model.setStop(false);
+                    if (command == "One Step") {
+                        model.runCommand(1);
+                    }
+                    if (command == "Hundred Steps") {
+                        model.runCommand(100);
+                    }
+                    if (command == "Start") {
+
+                        model.runCommand(100000);
+                    }
+                    if (command == "Stop") {
+
+                        model.setStop(true);
+
+                    }
+
+                }
+            };
+            performerThread.start();
         }
     }
-
-    public void startPressed() {
-        model.run = true;
-    }
-
-
-    public void stopPressed() {
-        model.run = false;
-    }
-
-    private void setSteps(int steps) {
-        Model carPark = (Model) super.model;
-
-        for(int i =0; i < steps; i++)
-            carPark.tick();
-    }
-
-    private void startStepPressed(){
-
-        try{
-            int steps = Integer.parseInt(stepsField.getText());
-
-            setSteps(steps);
-
-        } catch (NumberFormatException e){
-            // TODO notify user that the field is not a number!
-        }
-    }
-}
