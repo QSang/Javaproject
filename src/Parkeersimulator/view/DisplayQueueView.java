@@ -103,8 +103,8 @@ import Parkeersimulator.logic.*;
             exitIndex = model.getExitIndex();
             totalCarsIndex = model.getTotalCarsIndex();
 
-            txtEntranceQueue.setText("   "+ CarParkView.GetAdHoc());
-            txtEntrancePassQueue.setText("   "+ CarParkView.GetParkPass());
+            txtEntranceQueue.setText("   ");
+            txtEntrancePassQueue.setText("   ");
             txtExitQueue.setText("   "+ exitIndex);
             txtTotalCars.setText("   "+ totalCarsIndex);
 
