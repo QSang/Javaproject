@@ -11,6 +11,7 @@ public class CarParkView extends AbstractView {
 
     private static int AdHocCar;
     private static int ParkPassCar;
+    private static int ReserveringCar;
 
     /**
      * Constructor for objects of class CarPark
@@ -56,6 +57,7 @@ public class CarParkView extends AbstractView {
 
         AdHocCar = 0;
         ParkPassCar = 0;
+        ReserveringCar =0;
 
         if (!size.equals(getSize()))
         {
@@ -82,6 +84,12 @@ public class CarParkView extends AbstractView {
                         Color color2 = (Color.decode("#0077FF"));
                         drawPlace(graphics, location, color2);
                         ParkPassCar++;
+                    }
+
+                    else if(car != null && car.getClass().equals(ReserveringCar.class)){
+                        Color color3 = Color.green;
+                        drawPlace(graphics, location, color3);
+                        ReserveringCar++;
                     }
 
                 }
