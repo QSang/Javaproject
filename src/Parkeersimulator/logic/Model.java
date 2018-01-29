@@ -1,7 +1,8 @@
 package Parkeersimulator.logic;
 
 import java.util.Random;
-
+import javax.swing.JOptionPane;
+import Parkeersimulator.view.*;
 public class Model extends AbstractModel {
 
     private int numberOfFloors;
@@ -542,5 +543,31 @@ public class Model extends AbstractModel {
         {
             start = starting;
         }
+
+    public void TotalCars(){
+        int i = CarParkView.GetAdHoc() + CarParkView.GetParkPass();
+        int max = 20;
+        if(max > i){
+            Model.WarningOverCrowdedCars();
+        }
+    }
+
+    public void TotalCarsInQueue(){
+        int i = entranceCarQueue.carsInQueue() + entrancePassQueue.carsInQueue();
+        int max = 10;
+        if(max > i){
+            Model.WarningOverCrowdedQueue();
+        }
+    }
+
+
+    public static void WarningOverCrowdedCars(){
+        JOptionPane.showMessageDialog(null, "De parkeergarage heeft zijn maximum overtreden");
+    }
+
+
+    public static void WarningOverCrowdedQueue() {
+        JOptionPane.showMessageDialog(null, "De wachtrij heeft zijn maximum overtreden");
+    }
 
 }
