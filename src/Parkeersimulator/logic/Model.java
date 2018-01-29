@@ -14,6 +14,7 @@ public class Model extends AbstractModel {
 
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
+    private static final String RVC = "3";
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -34,8 +35,8 @@ public class Model extends AbstractModel {
     int weekendArrivals = 200; // average number of arriving cars per hour
     int weekDayPassArrivals = 50; // average number of arriving cars per hour
     int weekendPassArrivals = 5; // average number of arriving cars per hour
-    int weekDayReservedArrivals = 50; // average number of arriving cars per hour
-    int weekendReservedArrivals = 5; // average number of arriving cars per hour
+    int weekDayReservedArrivals = 25; // average number of arriving cars per hour
+    int weekendReservedArrivals = 15; // average number of arriving cars per hour
 
     int enterSpeed = 3; // number of cars that can enter per minute
     int paymentSpeed = 7; // number of cars that can pay per minute
@@ -151,6 +152,8 @@ public class Model extends AbstractModel {
         addArrivingCars(numberOfCars, AD_HOC);
         numberOfCars = getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
+        numberOfCars = getNumberOfCars(weekDayReservedArrivals, weekendReservedArrivals);
+        addArrivingCars(numberOfCars,RVC);
     }
 
     /**
@@ -268,6 +271,11 @@ public class Model extends AbstractModel {
                 for (int i = 0; i < numberOfCars; i++) {
                     entrancePassQueue.addCar(new ParkingPassCar());
                     totalCarsIndex++;
+                }
+                break;
+            case RVC:
+                for (int i = 0; i < numberOfCars; i++) {
+                    entranceCarQueue.addCar(new ReserveringCar());
                 }
                 break;
         }
