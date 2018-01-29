@@ -54,7 +54,7 @@ public class CarParkMain {
         typeOfCarView.setBorder(BorderFactory.createLineBorder(Color.black));
         pieView.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        controller.setBounds(-2, 730, 875, 500);
+        controller.setBounds(-2, 400, 875, 500);
         controller2.setBounds(5, 440, 200, 280);
 
         carParkView.setBounds(5,10,860,420);

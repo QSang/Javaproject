@@ -13,6 +13,7 @@ public class Model extends AbstractModel {
 
     private static final String AD_HOC = "1";
     private static final String PASS = "2";
+    private static final String RVC = "3";
 
     private CarQueue entranceCarQueue;
     private CarQueue entrancePassQueue;
@@ -150,6 +151,8 @@ public class Model extends AbstractModel {
         addArrivingCars(numberOfCars, AD_HOC);
         numberOfCars = getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
         addArrivingCars(numberOfCars, PASS);
+        numberOfCars = getNumberOfCars(weekDayPassArrivals, weekendPassArrivals);
+        addArrivingCars(numberOfCars,RVC);
     }
 
     /**
@@ -267,6 +270,11 @@ public class Model extends AbstractModel {
                 for (int i = 0; i < numberOfCars; i++) {
                     entrancePassQueue.addCar(new ParkingPassCar());
                     totalCarsIndex++;
+                }
+                break;
+            case RVC:
+                for (int i = 0; i < numberOfCars; i++) {
+                    entranceCarQueue.addCar(new ReserveringCar());
                 }
                 break;
         }
