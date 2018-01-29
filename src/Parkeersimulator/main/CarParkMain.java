@@ -55,7 +55,7 @@ public class CarParkMain {
 
 
         controller.setBounds(125, 700, 875, 500);
-       controller2.setBounds(5, 10, 200, 280);
+        controller2.setBounds(5, 10, 200, 400);
 
         carParkView.setBounds(230,10,860,420);
         typeOfCarView.setBounds(5, 440, 300, 130);
