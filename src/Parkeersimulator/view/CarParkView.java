@@ -87,11 +87,6 @@ public class CarParkView extends AbstractView {
                         ParkPassCar++;
 
                     }
-                    else if (car != null && car.getClass().equals(ReserveringCar.class) && car.getArrivalTime() != 0 && car.getArrivalTime() <= 15){
-                        Color color3 = Color.magenta;
-                        drawPlace(graphics, location, color3);
-                        ReservedSpot++;
-                    }
                     else if(car != null && car.getClass().equals(ReserveringCar.class)){
                         Color color3 = Color.green;
                         drawPlace(graphics, location, color3);
