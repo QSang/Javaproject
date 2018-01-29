@@ -7,6 +7,7 @@ public class PieView extends AbstractView {
     private int aantalAdHoc;
     private int aantalPassCar;
     private int aantalEmpty;
+    private int aantalReserveringsCars;
 
     /**
      * Creates the constructor
@@ -36,6 +37,7 @@ public class PieView extends AbstractView {
         aantalAdHoc = CarParkView.GetAdHoc();
         aantalPassCar = CarParkView.GetParkPass();
         aantalEmpty = 540 - aantalPassCar - aantalAdHoc;
+        aantalReserveringsCars = CarParkView.GetReserveringCars();
 
         a.setColor(Color.red);
         a.fillArc(15, 15, 250, 250, 0, calculateDegrees(aantalAdHoc));
@@ -45,6 +47,9 @@ public class PieView extends AbstractView {
 
         a.setColor(Color.white);
         a.fillArc(15, 15, 250, 250, calculateDegrees(aantalAdHoc) + calculateDegrees(aantalPassCar), calculateDegrees(aantalEmpty));
+
+        a.setColor(Color.green);
+        a.fillArc(15, 15, 250, 250, calculateDegrees(aantalAdHoc) + calculateDegrees(aantalPassCar) + calculateDegrees(aantalEmpty), calculateDegrees(aantalReserveringsCars));
 
         updateView();
     }
