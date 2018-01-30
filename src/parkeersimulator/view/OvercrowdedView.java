@@ -1,51 +1,78 @@
 package parkeersimulator.view;
 
 
-import parkeersimulator.logic.Model;
+import parkeersimulator.logic.*;
 
 import java.awt.*;
+import javax.swing.*;
 
 public class OvercrowdedView extends AbstractView {
 
-    private int aantalExitCars;
-    private int aantalQueueCars;
+    private int amountExitCars;
+    private int amountQueueCars;
+    private int amountPassCars;
+
+    private int percentBar1;
+    private int percentBar2;
+    private int percentBar3;
 
 
-    private int maxAantalQueue;
+    private JProgressBar carQueueBar;
+    private JProgressBar passQueueBar;
+    private JProgressBar exitQueueBar;
 
-    public OvercrowdedView(Model Model) {
-        super(Model);
-        setSize(300,300);
+    public OvercrowdedView(Model model) {
+        super(model);
+
+        carQueueBar = new JProgressBar();
+        carQueueBar.setBounds(0, 40, 680, 30);
+        carQueueBar.setBorderPainted(true);
+        carQueueBar.setStringPainted(true);
+        carQueueBar.setPreferredSize( new Dimension (400, 50));
+
+        add(carQueueBar);
+
+        passQueueBar = new JProgressBar();
+        passQueueBar.setBounds(0, 70, 680, 30);
+        passQueueBar.setBorderPainted(true);
+        passQueueBar.setStringPainted(true);
+        passQueueBar.setPreferredSize( new Dimension (400, 50));
+
+        add(passQueueBar);
+
+        exitQueueBar = new JProgressBar();
+        exitQueueBar.setBounds(0, 110, 680, 30);
+        exitQueueBar.setBorderPainted(true);
+        exitQueueBar.setStringPainted(true);
+        exitQueueBar.setPreferredSize( new Dimension (400, 50));
+
+        add(exitQueueBar);
     }
 
-    public int calculateDegrees(double aantalCars)
-    {
-        int degrees;
-        double garageSize = 540;
+    public void updateView() {
+        Model model = super.model;
 
-        degrees = (int) (((100 / garageSize) * aantalCars) * 3.6);
+        amountQueueCars = model.getEntranceCarQueue();
+        amountPassCars = model.getEntrancePassQueue();
+        amountExitCars = model.getExitCarQueue();
 
-        return degrees;
+        int maxCars = model.getEntrancePassQueue() + model.getEntranceCarQueue();
 
-    }
+        carQueueBar.setMaximum(maxCars);
+        carQueueBar.setValue(amountQueueCars);
+        percentBar1 = (int) Math.floor(carQueueBar.getPercentComplete() * 100);
+        carQueueBar.setString(("Car Queue Bar  ")+ percentBar1 + "%");
 
-    protected void paintComponent(Graphics a) {
-        super.paintComponent(a);
+        passQueueBar.setMaximum(maxCars);
+        passQueueBar.setValue(amountPassCars);
+        percentBar2 = (int) Math.floor(passQueueBar.getPercentComplete() * 100);
+        passQueueBar.setString(("Pass Queue Bar  ") + percentBar2 + "%");
 
+        exitQueueBar.setValue(amountExitCars);
+        percentBar3 = (int) Math.floor(exitQueueBar.getPercentComplete() * 100);
+        exitQueueBar.setString(("Exit Queue Bar  ") + percentBar3 + "%");
 
-        maxAantalQueue = 5;
-        aantalQueueCars = model.getEntranceCarQueue() + model.getEntrancePassQueue();
-        if(maxAantalQueue < aantalQueueCars){
-            aantalExitCars = aantalQueueCars -2;
-        }
-
-        a.setColor(Color.white);
-        a.fillArc(15, 15, 250, 250, 350, 360);
-
-        a.setColor(Color.blue);
-        a.fillArc(15, 15, 250, 250, 0, calculateDegrees(aantalQueueCars));
-        a.setColor(Color.green);
-        a.fillArc(15, 15, 250, 250, calculateDegrees(aantalQueueCars), calculateDegrees(aantalExitCars));
-
+        setVisible(true);
+        super.updateView();
     }
 }

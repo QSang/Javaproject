@@ -54,9 +54,8 @@ public class CarParkMain {
         displayQueueView.setBorder(BorderFactory.createLineBorder(Color.black));
         typeOfCarView.setBorder(BorderFactory.createLineBorder(Color.black));
         pieView.setBorder(BorderFactory.createLineBorder(Color.black));
+        overCrowdedView.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        controller.setBounds(-2, 400, 875, 500);
-        controller2.setBounds(5, 440, 200, 280);
 
         controller.setBounds(125, 700, 875, 500);
         controller2.setBounds(5, 10, 200, 400);
@@ -65,7 +64,8 @@ public class CarParkMain {
         typeOfCarView.setBounds(5, 440, 300, 130);
         displayQueueView.setBounds(5,580,300,145);
         pieView.setBounds(810, 440, 280, 280);
-        overCrowdedView.setBounds(610, 440, 280, 280);
+        overCrowdedView.setBounds(340,480,440,175);
+
         Color displayQueueBg = new Color(0xDBEEF4);
 
         screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

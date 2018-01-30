@@ -72,9 +72,9 @@ public class Model extends AbstractModel {
         int i = getal;
         if (!start) {
             setStart(true);
-        while(i> 0){
-            i--;
-            tick();
+            while (i > 0) {
+                tick();
+                i--;
                 if (stop) return;
                 if (i <= 0) setStart(false);
             }
@@ -469,6 +469,9 @@ public class Model extends AbstractModel {
         return entrancePassQueue.carsInQueue();
     }
 
+    public int getExitCarQueue() {
+        return exitCarQueue.carsInQueue();
+    }
 
     public int getTotalCarsIndex() {
         return totalCarsIndex;
@@ -478,6 +481,9 @@ public class Model extends AbstractModel {
         return exitIndex;
     }
 
+    public int getTotalAllCarsInQueue() {
+        return payingCars;
+    }
 
     public int getPayingCars() {
         return payingCars;
