@@ -1,8 +1,7 @@
-package Parkeersimulator.view;
+package parkeersimulator.view;
 
 
-import Parkeersimulator.logic.Model;
-import Parkeersimulator.logic.*;
+import parkeersimulator.logic.Model;
 
 import java.awt.*;
 
@@ -35,14 +34,10 @@ public class OvercrowdedView extends AbstractView {
 
 
         maxAantalQueue = 5;
-
+        aantalQueueCars = model.getEntranceCarQueue() + model.getEntrancePassQueue();
         if(maxAantalQueue < aantalQueueCars){
             aantalExitCars = aantalQueueCars -2;
         }
-
-
-        System.out.println("AantalQueueCars :" + aantalQueueCars + " AantalExitCars:" + aantalExitCars);
-
 
         a.setColor(Color.white);
         a.fillArc(15, 15, 250, 250, 350, 360);
@@ -51,8 +46,6 @@ public class OvercrowdedView extends AbstractView {
         a.fillArc(15, 15, 250, 250, 0, calculateDegrees(aantalQueueCars));
         a.setColor(Color.green);
         a.fillArc(15, 15, 250, 250, calculateDegrees(aantalQueueCars), calculateDegrees(aantalExitCars));
-
-
 
     }
 }

@@ -1,4 +1,4 @@
-package Parkeersimulator.logic;
+package parkeersimulator.logic;
 
 import java.awt.Color;
 

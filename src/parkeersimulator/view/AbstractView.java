@@ -1,7 +1,7 @@
-package Parkeersimulator.view;
+package parkeersimulator.view;
 
 import javax.swing.JPanel;
-import Parkeersimulator.logic.Model;
+import parkeersimulator.logic.Model;
 
 public abstract class AbstractView extends JPanel{
     protected Model model;

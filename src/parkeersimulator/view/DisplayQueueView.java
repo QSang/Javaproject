@@ -1,9 +1,9 @@
-package Parkeersimulator.view;
+package parkeersimulator.view;
 
 import javax.swing.*;
 import java.awt.*;
 
-import Parkeersimulator.logic.*;
+import parkeersimulator.logic.*;
 
     public class DisplayQueueView extends AbstractView{
         private JTextField txtEntranceQueue;
@@ -103,8 +103,8 @@ import Parkeersimulator.logic.*;
             exitIndex = model.getExitIndex();
             totalCarsIndex = model.getTotalCarsIndex();
 
-            txtEntranceQueue.setText("   ");
-            txtEntrancePassQueue.setText("   ");
+            txtEntranceQueue.setText("   " + model.getEntranceCarQueue());
+            txtEntrancePassQueue.setText("   " + model.getEntrancePassQueue());
             txtExitQueue.setText("   "+ exitIndex);
             txtTotalCars.setText("   "+ totalCarsIndex);
 

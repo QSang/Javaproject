@@ -1,13 +1,14 @@
-package Parkeersimulator.view;
+package parkeersimulator.view;
 
 import java.awt.*;
 import javax.swing.*;
 
-import Parkeersimulator.logic.*;
+import parkeersimulator.logic.*;
 
 public class TypeOfCarView extends AbstractView{
     private JTextField TadHoc;
     private JTextField TpassHolder;
+    private JTextField TreservingCar;
     private JTextField Tempty;
 
     public TypeOfCarView(Model model) {
@@ -34,10 +35,19 @@ public class TypeOfCarView extends AbstractView{
         add(LpassHolder);
         add(TpassHolder);
 
+        JLabel LreservingCars = new JLabel("Percentage of Reserving Cars:         ");
+        TreservingCar = new JTextField("  0%  ");
+        TreservingCar.setColumns(4);
+        TreservingCar.setEditable(false);
+        TreservingCar.setBackground(Color.green);
+        TreservingCar.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        add(LreservingCars);
+        add(TreservingCar);
+
         /*
          * Create a JTextField and JLabel for the Empty Spots in the garage
          */
-        JLabel Lempty = new JLabel("Percentage of Empty Spots:               ");
+        JLabel Lempty = new JLabel("Percentage of Empty Spots:           ");
         Tempty = new JTextField("  100%  ");
         Tempty.setColumns(4);
         Tempty.setEditable(false);
@@ -62,23 +72,28 @@ public class TypeOfCarView extends AbstractView{
         double garageSize = 540;
         double AdHoc = CarParkView.GetAdHoc();
         double PassCar = CarParkView.GetParkPass();
+        double ReservingCars = CarParkView.GetReserveringCars();
 
         int AdHocCar;
         int PassParkCar;
+        int ReservingCar;
 
-        int EmptySpots = (int) ((int) 540 - AdHoc - PassCar);
+        int EmptySpots = (int) ((int) 540 - AdHoc - PassCar - ReservingCars);
         int Empty = (int) (((100 / garageSize) * EmptySpots));
 
         AdHocCar = (int) (((100 / garageSize) * AdHoc));
         PassParkCar = (int) (((100 / garageSize) * PassCar));
+        ReservingCar = (int) (((100 / garageSize) * ReservingCars));
 
         String a = String.valueOf(AdHocCar);
         String p = String.valueOf(PassParkCar);
+        String r = String.valueOf(ReservingCar);
         String e = String.valueOf(Empty);
 
         TadHoc.setText("   " + a + "%");
         TpassHolder.setText("   " + p + "%");
         Tempty.setText("   " + e + "%");
+        TreservingCar.setText("   " + r + "%");
 
         }
     }

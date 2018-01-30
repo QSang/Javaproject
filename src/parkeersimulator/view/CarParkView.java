@@ -1,7 +1,7 @@
-package Parkeersimulator.view;
+package parkeersimulator.view;
 
 import java.awt.*;
-import Parkeersimulator.logic.*;
+import parkeersimulator.logic.*;
 
 public class CarParkView extends AbstractView {
 

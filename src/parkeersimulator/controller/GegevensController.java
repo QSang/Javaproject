@@ -1,12 +1,11 @@
-package Parkeersimulator.controller;
+package parkeersimulator.controller;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Parkeersimulator.controller.*;
-import Parkeersimulator.logic.*;
-import Parkeersimulator.view.*;
-import Parkeersimulator.main.*;
+
+import parkeersimulator.logic.*;
+
 import javax.swing.*;
 
 public class GegevensController extends AbstractController implements ActionListener {

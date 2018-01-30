@@ -1,12 +1,12 @@
-package Parkeersimulator.main;
+package parkeersimulator.main;
 
 import javax.swing.*;
 
 import java.awt.*;
 
-import Parkeersimulator.controller.*;
-import Parkeersimulator.logic.*;
-import Parkeersimulator.view.*;
+import parkeersimulator.controller.*;
+import parkeersimulator.logic.*;
+import parkeersimulator.view.*;
 
 public class CarParkMain {
     private JFrame screen;
@@ -16,6 +16,7 @@ public class CarParkMain {
     private AbstractView  displayQueueView;
     private AbstractView typeOfCarView;
     private AbstractView pieView;
+    private AbstractView overCrowdedView;
 
     private GegevensController controller2;
     private SimulatorController controller;
@@ -26,14 +27,14 @@ public class CarParkMain {
         controller = new SimulatorController(model);
         controller2 = new GegevensController(model);
 
-        screen = new JFrame("Parkeersimulator");
+        screen = new JFrame("parkeersimulator");
         screen.setSize(1100 , 800);
 
         carParkView = new CarParkView(model);
         displayQueueView = new DisplayQueueView(model);
         typeOfCarView = new TypeOfCarView(model);
         pieView = new PieView(model);
-
+        overCrowdedView = new OvercrowdedView(model);
 
         screen.setResizable(false);
 
@@ -43,6 +44,7 @@ public class CarParkMain {
         screen.getContentPane().add(displayQueueView);
         screen.getContentPane().add(typeOfCarView);
         screen.getContentPane().add(pieView);
+        screen.getContentPane().add(overCrowdedView);
 
         screen.getContentPane().add(controller);
         screen.getContentPane().add(controller2);
@@ -63,6 +65,7 @@ public class CarParkMain {
         typeOfCarView.setBounds(5, 440, 300, 130);
         displayQueueView.setBounds(5,580,300,145);
         pieView.setBounds(810, 440, 280, 280);
+        overCrowdedView.setBounds(610, 440, 280, 280);
         Color displayQueueBg = new Color(0xDBEEF4);
 
         screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,8 +74,8 @@ public class CarParkMain {
 
         screen.setVisible(true);
 
-        model.TotalCarsInQueue();
-        model.TotalCars();
+        model.totalCarsInQueue();
+        model.totalCars();
 
     }
 }

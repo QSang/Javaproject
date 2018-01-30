@@ -1,8 +1,8 @@
-package Parkeersimulator.logic;
+package parkeersimulator.logic;
 
 import java.util.Random;
 import javax.swing.JOptionPane;
-import Parkeersimulator.view.*;
+import parkeersimulator.view.*;
 public class Model extends AbstractModel {
 
     private int numberOfFloors;
@@ -47,9 +47,9 @@ public class Model extends AbstractModel {
     double price;
     double priceReduced;
 
-    private static int totalCarsIndex = 0;
-    private static int exitIndex = 0;
-    private static int payingCars = 0;
+    private int totalCarsIndex = 0;
+    private int exitIndex = 0;
+    private int payingCars = 0;
 
     public Model() {
         this.numberOfFloors = 3;
@@ -72,9 +72,9 @@ public class Model extends AbstractModel {
         int i = getal;
         if (!start) {
             setStart(true);
-            while (i > 0) {
-                tick();
-                i--;
+        while(i> 0){
+            i--;
+            tick();
                 if (stop) return;
                 if (i <= 0) setStart(false);
             }
@@ -461,6 +461,14 @@ public class Model extends AbstractModel {
         String text = String.format("%.2f", (double) turnoverTotal);
     }
 
+    public int getEntranceCarQueue() {
+        return entranceCarQueue.carsInQueue();
+    }
+
+    public int getEntrancePassQueue() {
+        return entrancePassQueue.carsInQueue();
+    }
+
 
     public int getTotalCarsIndex() {
         return totalCarsIndex;
@@ -544,30 +552,20 @@ public class Model extends AbstractModel {
             start = starting;
         }
 
-    public void TotalCars(){
+    public void totalCars(){
         int i = CarParkView.GetAdHoc() + CarParkView.GetParkPass();
         int max = 20;
-        if(max > i){
-            Model.WarningOverCrowdedCars();
+        if(max < i){
+            CarQueue.warningOverCrowdedCars();
         }
     }
 
-    public void TotalCarsInQueue(){
-        int i = entranceCarQueue.carsInQueue() + entrancePassQueue.carsInQueue();
+    public void totalCarsInQueue(){
+        int i = getEntranceCarQueue() + getEntrancePassQueue();
         int max = 10;
-        if(max > i){
-            Model.WarningOverCrowdedQueue();
+        if(max < i){
+            CarQueue.warningOverCrowdedQueue();
         }
-    }
-
-
-    public static void WarningOverCrowdedCars(){
-        JOptionPane.showMessageDialog(null, "De parkeergarage heeft zijn maximum overtreden");
-    }
-
-
-    public static void WarningOverCrowdedQueue() {
-        JOptionPane.showMessageDialog(null, "De wachtrij heeft zijn maximum overtreden");
     }
 
 }
