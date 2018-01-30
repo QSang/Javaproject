@@ -21,9 +21,9 @@ public class PieView extends AbstractView {
     private int calculateDegrees(double aantalCars)
     {
         int degrees;
-        double garageSize = 540;
+        double queueSize = 540;
 
-        degrees = (int) (((100 / garageSize) * aantalCars) * 3.6);
+        degrees = (int) (((100 / queueSize) * aantalCars) * 3.6);
 
         return degrees;
     }

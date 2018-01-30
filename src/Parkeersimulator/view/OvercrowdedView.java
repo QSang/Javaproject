@@ -2,7 +2,7 @@ package Parkeersimulator.view;
 
 
 import Parkeersimulator.logic.Model;
-import Parkeersimulator.logic.*;
+import Parkeersimulator.logic.CarQueue;
 
 import java.awt.*;
 
@@ -30,12 +30,17 @@ public class OvercrowdedView extends AbstractView {
 
     }
 
+
     protected void paintComponent(Graphics a) {
         super.paintComponent(a);
 
 
         maxAantalQueue = 5;
+        aantalQueueCars = model.carsInQueue();
 
+        /**
+         * The queue is overcrowded if their are 5 cars in it, so 2 people decided to leave the queue.
+         */
         if(maxAantalQueue < aantalQueueCars){
             aantalExitCars = aantalQueueCars -2;
         }

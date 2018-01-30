@@ -35,6 +35,7 @@ public class CarParkMain {
         pieView = new PieView(model);
 
 
+
         screen.setResizable(false);
 
         screen.setLayout(null);
