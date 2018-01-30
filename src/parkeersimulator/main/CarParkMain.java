@@ -64,7 +64,7 @@ public class CarParkMain {
         typeOfCarView.setBounds(5, 440, 300, 130);
         displayQueueView.setBounds(5,580,300,145);
         pieView.setBounds(810, 440, 280, 280);
-        overCrowdedView.setBounds(340,480,440,175);
+        overCrowdedView.setBounds(340,440,440,250);
 
         Color displayQueueBg = new Color(0xDBEEF4);
 

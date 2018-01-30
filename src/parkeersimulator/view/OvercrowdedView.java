@@ -25,28 +25,27 @@ public class OvercrowdedView extends AbstractView {
         super(model);
 
         carQueueBar = new JProgressBar();
-        carQueueBar.setBounds(0, 40, 680, 30);
+        carQueueBar.setBounds(10, 10, 420, 50);
         carQueueBar.setBorderPainted(true);
         carQueueBar.setStringPainted(true);
-        carQueueBar.setPreferredSize( new Dimension (400, 50));
 
         add(carQueueBar);
 
         passQueueBar = new JProgressBar();
-        passQueueBar.setBounds(0, 70, 680, 30);
+        passQueueBar.setBounds(10, 100, 420, 50);
         passQueueBar.setBorderPainted(true);
         passQueueBar.setStringPainted(true);
-        passQueueBar.setPreferredSize( new Dimension (400, 50));
 
         add(passQueueBar);
 
         exitQueueBar = new JProgressBar();
-        exitQueueBar.setBounds(0, 110, 680, 30);
+        exitQueueBar.setBounds(10, 190, 420, 50);
         exitQueueBar.setBorderPainted(true);
         exitQueueBar.setStringPainted(true);
-        exitQueueBar.setPreferredSize( new Dimension (400, 50));
 
         add(exitQueueBar);
+        setLayout(null);
+
     }
 
     public void updateView() {
