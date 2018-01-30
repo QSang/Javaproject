@@ -45,7 +45,7 @@ public class OvercrowdedView extends AbstractView {
 
         add(exitQueueBar);
         setLayout(null);
-
+        updateView();
     }
 
     public void updateView() {
