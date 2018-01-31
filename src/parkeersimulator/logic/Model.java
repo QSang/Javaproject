@@ -128,6 +128,7 @@ public class Model extends AbstractModel {
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
+        carsEntering(entranceReservedQueue);
     }
 
     /**
@@ -167,18 +168,7 @@ public class Model extends AbstractModel {
     private void carsEntering(CarQueue queue) {
         while (queue.carsInQueue() > 0 ) {
 
-                if (queue == entranceReservedQueue) {
-                    Location freeLocation = getFirstFreeReservedLocation();
-                    if (freeLocation != null) {
-                        Car car = queue.removeCar();
-                        setCarAt(freeLocation, car);
-                    }
-                    else{
-
-                    }
-
-                }
-                else if (queue == entrancePassQueue){
+                 if (queue == entrancePassQueue){
 
                     Location freeLocation = getFirstFreePassLocation();
                     if (freeLocation != null) {
@@ -189,7 +179,7 @@ public class Model extends AbstractModel {
 
                     }
                 }
-                else if (queue == entranceCarQueue) {
+                else if (queue == entranceCarQueue || queue == entranceReservedQueue) {
 
                     Location freeLocation = getFirstFreeLocation();
                     if (freeLocation != null) {
@@ -299,7 +289,8 @@ public class Model extends AbstractModel {
                 break;
             case RVC:
                 for (int i = 0; i < numberOfCars; i++) {
-                    entranceCarQueue.addCar(new ReserveringCar());
+                    entranceReservedQueue.addCar(new ReserveringCar());
+                    totalCarsIndex++;
                 }
                 break;
 
@@ -430,23 +421,6 @@ public class Model extends AbstractModel {
         return null;
     }
 
-    /**
-     * @return First free reserved location in the car park.
-     */
-    public Location getFirstFreeReservedLocation() {
-        for (int floor = 2; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
     public Location getFirstFreePassLocation() {
         for (int floor = 2; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -507,7 +481,8 @@ public class Model extends AbstractModel {
     }
 
     public int getEntrancePassQueue() {
-        return entrancePassQueue.carsInQueue();
+        int passReservedQueue = (entrancePassQueue.carsInQueue()+entranceReservedQueue.carsInQueue());
+        return passReservedQueue;
     }
 
     public int getExitCarQueue() {
