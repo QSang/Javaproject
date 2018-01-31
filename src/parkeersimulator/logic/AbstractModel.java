@@ -1,10 +1,10 @@
-package Parkeersimulator.logic;
+package parkeersimulator.logic;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Parkeersimulator.view.AbstractView;
+import parkeersimulator.view.AbstractView;
 
 public abstract class AbstractModel {
     private List<AbstractView> views;

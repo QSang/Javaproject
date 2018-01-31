@@ -1,10 +1,7 @@
-package Parkeersimulator.logic;
+package parkeersimulator.logic;
 
 import java.util.Random;
 import java.awt.*;
-import Parkeersimulator.logic.*;
-import Parkeersimulator.view.*;
-import Parkeersimulator.controller.*;
 
 
 public class AdHocCar extends Car {

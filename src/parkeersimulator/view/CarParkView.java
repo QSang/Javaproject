@@ -1,7 +1,7 @@
-package Parkeersimulator.view;
+package parkeersimulator.view;
 
 import java.awt.*;
-import Parkeersimulator.logic.*;
+import parkeersimulator.logic.*;
 
 public class CarParkView extends AbstractView {
 
@@ -12,6 +12,7 @@ public class CarParkView extends AbstractView {
     private static int AdHocCar;
     private static int ParkPassCar;
     private static int ReserveringCar;
+    private static int ReservedSpot;
 
     /**
      * Constructor for objects of class CarPark
@@ -58,6 +59,7 @@ public class CarParkView extends AbstractView {
         AdHocCar = 0;
         ParkPassCar = 0;
         ReserveringCar =0;
+        ReservedSpot = 0;
 
         if (!size.equals(getSize()))
         {
@@ -84,9 +86,14 @@ public class CarParkView extends AbstractView {
                         Color color2 = (Color.decode("#0077FF"));
                         drawPlace(graphics, location, color2);
                         ParkPassCar++;
-                    }
 
-                    else if(car != null && car.getClass().equals(ReserveringCar.class)){
+                    }
+                    else if (car != null && car.getClass().equals(ReserveringCar.class) && car.getArrivalTime() != 0 && car.getArrivalTime() <= 15){
+                        Color color3 = Color.magenta;
+                        drawPlace(graphics, location, color3);
+                        ReservedSpot++;
+                    }
+                    else if(car != null && car.getClass().equals(ReserveringCar.class) && car.getArrivalTime() == 0){
                         Color color3 = Color.green;
                         drawPlace(graphics, location, color3);
                         ReserveringCar++;
@@ -119,6 +126,7 @@ public class CarParkView extends AbstractView {
     public static int GetParkPass(){
         return ParkPassCar;
     }
+    public static int GetReservedSpot(){ return ReservedSpot;}
 
     public static int GetReserveringCars(){
         return ReserveringCar;

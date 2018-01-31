@@ -1,20 +1,12 @@
-package Parkeersimulator.controller;
+package parkeersimulator.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Parkeersimulator.logic.Model;
-import Parkeersimulator.main.CarParkMain;
+import parkeersimulator.logic.Model;
 
 import javax.swing.*;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import Parkeersimulator.logic.Model;
-import Parkeersimulator.main.CarParkMain;
-
-import javax.swing.*;
-
-    public class SimulatorController extends AbstractController implements ActionListener {
+public class SimulatorController extends AbstractController implements ActionListener {
         private JButton oneStepButton;
         private JButton hundredStepsButton;
         private JButton startButton;

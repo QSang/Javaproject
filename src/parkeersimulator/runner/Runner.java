@@ -1,7 +1,7 @@
-package Parkeersimulator.runner;
+package parkeersimulator.runner;
 
 
-import Parkeersimulator.main.CarParkMain;
+import parkeersimulator.main.CarParkMain;
 
 public class Runner {
     public static void main(String[] args) {

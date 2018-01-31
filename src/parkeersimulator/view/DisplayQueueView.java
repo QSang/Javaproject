@@ -1,14 +1,14 @@
-package Parkeersimulator.view;
+package parkeersimulator.view;
 
 import javax.swing.*;
 import java.awt.*;
 
-import Parkeersimulator.logic.*;
+import parkeersimulator.logic.*;
 
     public class DisplayQueueView extends AbstractView{
         private JTextField txtEntranceQueue;
         private JTextField txtEntrancePassQueue;
-        private JTextField txtExitQueue;
+        private JTextField txtExit;
         private JTextField txtTotalCars;
         private JTextField txtCurrentRevenue;
         private JTextField txtTotalRevenue;
@@ -54,14 +54,14 @@ import Parkeersimulator.logic.*;
             /**
              * Exit Queue JTextField and JLabel
              */
-            JLabel lblExitQueue = new JLabel("Exit Cars Queue:                                    ");
-            txtExitQueue = new JTextField("   0");
-            txtExitQueue.setColumns(4);
-            txtExitQueue.setEditable(false);
-            txtExitQueue.setOpaque(false);
-            txtExitQueue.setBorder(BorderFactory.createLineBorder(Color.black,1));
-            add(lblExitQueue);
-            add(txtExitQueue);
+            JLabel lblExit = new JLabel("Total cars Exiting:                                    ");
+            txtExit = new JTextField("   0");
+            txtExit.setColumns(4);
+            txtExit.setEditable(false);
+            txtExit.setOpaque(false);
+            txtExit.setBorder(BorderFactory.createLineBorder(Color.black,1));
+            add(lblExit);
+            add(txtExit);
 
             JLabel lblTotalCars = new JLabel("Total cars used:                                     ");
             txtTotalCars = new JTextField("   0");
@@ -103,9 +103,9 @@ import Parkeersimulator.logic.*;
             exitIndex = model.getExitIndex();
             totalCarsIndex = model.getTotalCarsIndex();
 
-            txtEntranceQueue.setText("   ");
-            txtEntrancePassQueue.setText("   ");
-            txtExitQueue.setText("   "+ exitIndex);
+            txtEntranceQueue.setText("   " + model.getEntranceCarQueue());
+            txtEntrancePassQueue.setText("   " + model.getEntrancePassQueue());
+            txtExit.setText("   "+ exitIndex);
             txtTotalCars.setText("   "+ totalCarsIndex);
 
             setVisible(true);

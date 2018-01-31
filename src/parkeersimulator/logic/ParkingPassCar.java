@@ -1,4 +1,4 @@
-package Parkeersimulator.logic;
+package parkeersimulator.logic;
 
 import java.util.Random;
 import java.awt.*;
