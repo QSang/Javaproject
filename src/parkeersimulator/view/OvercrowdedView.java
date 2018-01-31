@@ -16,7 +16,6 @@ public class OvercrowdedView extends AbstractView {
     private int percentBar2;
     private int percentBar3;
 
-
     private JProgressBar carQueueBar;
     private JProgressBar passQueueBar;
     private JProgressBar exitQueueBar;
