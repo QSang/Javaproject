@@ -1,44 +1,86 @@
-package Parkeersimulator.main;
-
-import java.awt.*;
+package parkeersimulator.main;
 
 import javax.swing.*;
 
-import Parkeersimulator.controller.GegevensController;
-import Parkeersimulator.controller.SimulatorController;
-import Parkeersimulator.logic.Model;
-import Parkeersimulator.view.AbstractView;
-import Parkeersimulator.view.CarParkView;
+import java.awt.*;
+
+import parkeersimulator.controller.*;
+import parkeersimulator.logic.*;
+import parkeersimulator.view.*;
 
 public class CarParkMain {
     private JFrame screen;
     private Model model;
-    private AbstractView carparkview;
 
-    private SimulatorController controller;
+    private AbstractView carParkView;
+    private AbstractView  displayQueueView;
+    private AbstractView typeOfCarView;
+    private AbstractView pieView;
+    private AbstractView overCrowdedView;
+    private AbstractView timeView;
+
     private GegevensController controller2;
+    private SimulatorController controller;
 
     public CarParkMain() {
         model = new Model();
+
         controller = new SimulatorController(model);
         controller2 = new GegevensController(model);
-        carparkview = new CarParkView(model);
-        screen = new JFrame("Parkeersimulator");
-        screen.setSize(880, 800);
+
+        screen = new JFrame("parkeersimulator");
+        screen.setSize(1100 , 800);
+
+        carParkView = new CarParkView(model);
+        displayQueueView = new DisplayQueueView(model);
+        typeOfCarView = new TypeOfCarView(model);
+        pieView = new PieView(model);
+        overCrowdedView = new OvercrowdedView(model);
+        timeView = new TimeView(model);
+
         screen.setResizable(false);
 
-        screen.getContentPane().add(carparkview);
+        screen.setLayout(null);
+
+        screen.getContentPane().add(carParkView);
+        screen.getContentPane().add(displayQueueView);
+        screen.getContentPane().add(typeOfCarView);
+        screen.getContentPane().add(pieView);
+        screen.getContentPane().add(overCrowdedView);
+        screen.getContentPane().add(timeView);
+
         screen.getContentPane().add(controller);
         screen.getContentPane().add(controller2);
-        carparkview.setBounds(5, 10, 875, 420);
-        controller.setBounds(-2, 730, 875, 100);
-        controller2.setBounds(5, 440, 875, 100);
-        controller.setBorder(BorderFactory.createLineBorder(Color.black));
+
         controller2.setBorder(BorderFactory.createLineBorder(Color.black));
-        carparkview.setBorder(BorderFactory.createLineBorder(Color.black));
+        carParkView.setBorder(BorderFactory.createLineBorder(Color.black));
+        displayQueueView.setBorder(BorderFactory.createLineBorder(Color.black));
+        typeOfCarView.setBorder(BorderFactory.createLineBorder(Color.black));
+        pieView.setBorder(BorderFactory.createLineBorder(Color.black));
+        overCrowdedView.setBorder(BorderFactory.createLineBorder(Color.black));
+
+
+
+        controller.setBounds(125, 700, 875, 500);
+        controller2.setBounds(5, 10, 200, 420);
+
+        carParkView.setBounds(230,10,860,420);
+        typeOfCarView.setBounds(5, 440, 300, 130);
+        displayQueueView.setBounds(5,580,300,145);
+        pieView.setBounds(810, 440, 280, 280);
+        overCrowdedView.setBounds(340,440,440,250);
+        timeView.setBounds(125,740,875,250);
+
+        Color displayQueueBg = new Color(0xDBEEF4);
+
+        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        screen.setBackground(displayQueueBg);
 
         screen.setVisible(true);
-        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        model.totalCarsInQueue();
+        model.totalCars();
 
     }
 }
