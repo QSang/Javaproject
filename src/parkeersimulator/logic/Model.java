@@ -22,7 +22,7 @@ public class Model extends AbstractModel {
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
 
-    private int day = 0;
+    private int day = 1;
     private int hour = 0;
     private int minute = 0;
 
@@ -168,24 +168,39 @@ public class Model extends AbstractModel {
         while (queue.carsInQueue() > 0 ) {
 
                 if (queue == entranceReservedQueue) {
-                    Car car = queue.removeCar();
                     Location freeLocation = getFirstFreeReservedLocation();
-                    setCarAt(freeLocation, car);
+                    if (freeLocation != null) {
+                        Car car = queue.removeCar();
+                        setCarAt(freeLocation, car);
+                    }
+                    else{
+
+                    }
+
                 }
                 else if (queue == entrancePassQueue){
-                    Car car = queue.removeCar();
+
                     Location freeLocation = getFirstFreePassLocation();
-                    setCarAt(freeLocation, car);
+                    if (freeLocation != null) {
+                        Car car = queue.removeCar();
+                        setCarAt(freeLocation, car);
+                    }
+                    else{
+
+                    }
                 }
                 else if (queue == entranceCarQueue) {
-                    Car car = queue.removeCar();
-                    Location freeLocation = getFirstFreeLocation();
-                    setCarAt(freeLocation, car);
 
-                    if (!car.getHasToPay()) {
-                        double priceTemp = priceReduced * (car.getMinutesTotal() / (double) 60);
-                        turnoverTotal += priceTemp;
+                    Location freeLocation = getFirstFreeLocation();
+                    if (freeLocation != null) {
+                       Car car = queue.removeCar();
+                        setCarAt(freeLocation, car);
                     }
+                    else{
+
+                    }
+
+
 
 
                 }

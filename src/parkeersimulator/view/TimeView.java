@@ -38,8 +38,19 @@ public class TimeView extends AbstractView {
     public void updateView(){
         Model model = (Model) super.model;
 
-        txtTime.setText("Time: " + model.getHours()+ ":" + model.getMinutes());
-        txtDays.setText("Day:"+ model.getDays());
+        String hour = String.valueOf(model.getHours());
+        String minutes= String.valueOf(model.getMinutes());
+        String days = String.valueOf(model.getDays());
+        if (model.getHours() < 10)
+        {
+            hour = "0"+ hour;
+        }
+        if (model.getMinutes() < 10)
+        {
+            minutes = "0"+ minutes;
+        }
+        txtTime.setText("Time: " + hour+ ":" + minutes);
+        txtDays.setText("Day: "+ days);
 
         setVisible(true);
 
