@@ -25,7 +25,7 @@ public class Model extends AbstractModel {
     private int hour = 0;
     private int minute = 0;
 
-    private int tickPause = 250;
+    private int tickPause = 250  ;
 
     private boolean stop;
     private boolean start;
