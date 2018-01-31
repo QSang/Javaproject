@@ -38,65 +38,75 @@ public class GegevensController extends AbstractController implements ActionList
     public GegevensController(Model model) {
         super(model);
 
-        weekDayArLabel = new JLabel("Weekday Arrivals:    ");
-        weekDayArText = new JTextField(5);
+        weekDayArLabel = new JLabel("Weekday Car Arrivals:                   ");
+        weekDayArText = new JTextField(3);
         weekDayArText.setText("100");
+        weekDayArText.setHorizontalAlignment(JTextField.CENTER);
+
         weekDayArText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(weekDayArLabel);
         add(weekDayArText);
 
-        weekendArLabel = new JLabel("Weekend Arrivals:    ");
-        weekendArText = new JTextField(5);
+        weekendArLabel = new JLabel("Weekend Car Arrivals:                  ");
+        weekendArText = new JTextField(3);
         weekendArText.setText("200");
+        weekendArText.setHorizontalAlignment(JTextField.CENTER);
         weekendArText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(weekendArLabel);
         add(weekendArText);
 
-        weekDayPassArLabel = new JLabel("Weekday Pass Arrivals:    ");
-        weekDayPassArText = new JTextField(5);
+        weekDayPassArLabel = new JLabel("Weekday Parkingpass Arrivals: ");
+        weekDayPassArText = new JTextField(3);
         weekDayPassArText.setText("50");
+        weekDayPassArText.setHorizontalAlignment(JTextField.CENTER);
         weekDayPassArText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(weekDayPassArLabel);
         add(weekDayPassArText);
 
-        weekendPassArLabel = new JLabel("Weekend Pass Arrivals:    ");
-        weekendPassArText = new JTextField(5);
+        weekendPassArLabel = new JLabel("Weekend Parkingpass Arrivals: ");
+        weekendPassArText = new JTextField(3);
         weekendPassArText.setText("5");
+        weekendPassArText.setHorizontalAlignment(JTextField.CENTER);
         weekendPassArText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(weekendPassArLabel);
         add(weekendPassArText);
 
-        weekDayReservedArLabel = new JLabel("Weekday Reserved Arrivals:    ");
-        weekDayReservedArText = new JTextField(5);
+        weekDayReservedArLabel = new JLabel("Weekday Reserved Arrivals:       ");
+        weekDayReservedArText = new JTextField(3);
         weekDayReservedArText.setText("50");
+        weekDayReservedArText.setHorizontalAlignment(JTextField.CENTER);
         weekDayReservedArText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(weekDayReservedArLabel);
         add(weekDayReservedArText);
 
-        weekendReservedArLabel = new JLabel("Weekend Reserved Arrivals:    ");
-        weekendReservedArText = new JTextField(5);
+        weekendReservedArLabel = new JLabel("Weekend Reserved Arrivals:       ");
+        weekendReservedArText = new JTextField(3);
         weekendReservedArText.setText("5");
+        weekendReservedArText.setHorizontalAlignment(JTextField.CENTER);
         weekendReservedArText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(weekendReservedArLabel);
         add(weekendReservedArText);
 
-        enterSpLabel = new JLabel("Enter Speed:    ");
-        enterSpText = new JTextField(5);
+        enterSpLabel = new JLabel("Enter Speed:                                     ");
+        enterSpText = new JTextField(3);
         enterSpText.setText("3");
+        enterSpText.setHorizontalAlignment(JTextField.CENTER);
         enterSpText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(enterSpLabel);
         add(enterSpText);
 
-        paymentSpLabel = new JLabel("Payment Speed:    ");
-        paymentSpText = new JTextField(5);
+        paymentSpLabel = new JLabel("Payment Speed:                              ");
+        paymentSpText = new JTextField(3);
         paymentSpText.setText("7");
+        paymentSpText.setHorizontalAlignment(JTextField.CENTER);
         paymentSpText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(paymentSpLabel);
         add(paymentSpText);
 
-        exitSpLabel = new JLabel("Exit Speed:    ");
-        exitSpText = new JTextField(5);
+        exitSpLabel = new JLabel("Exit Speed:                                        ");
+        exitSpText = new JTextField(3);
         exitSpText.setText("5");
+        exitSpText.setHorizontalAlignment(JTextField.CENTER);
         exitSpText.setBorder(BorderFactory.createLineBorder(Color.black,1));
         add(exitSpLabel);
         add(exitSpText);

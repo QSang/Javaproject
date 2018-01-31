@@ -17,6 +17,7 @@ public class CarParkMain {
     private AbstractView typeOfCarView;
     private AbstractView pieView;
     private AbstractView overCrowdedView;
+    private AbstractView timeView;
 
     private GegevensController controller2;
     private SimulatorController controller;
@@ -35,6 +36,7 @@ public class CarParkMain {
         typeOfCarView = new TypeOfCarView(model);
         pieView = new PieView(model);
         overCrowdedView = new OvercrowdedView(model);
+        timeView = new TimeView(model);
 
         screen.setResizable(false);
 
@@ -45,6 +47,7 @@ public class CarParkMain {
         screen.getContentPane().add(typeOfCarView);
         screen.getContentPane().add(pieView);
         screen.getContentPane().add(overCrowdedView);
+        screen.getContentPane().add(timeView);
 
         screen.getContentPane().add(controller);
         screen.getContentPane().add(controller2);
@@ -65,6 +68,7 @@ public class CarParkMain {
         displayQueueView.setBounds(5,580,300,145);
         pieView.setBounds(810, 440, 280, 280);
         overCrowdedView.setBounds(340,440,440,250);
+        timeView.setBounds(340,740,440,250);
 
         Color displayQueueBg = new Color(0xDBEEF4);
 

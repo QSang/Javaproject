@@ -22,7 +22,7 @@ public class Model extends AbstractModel {
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
 
-    private int day = 0;
+    private int day = 1;
     private int hour = 0;
     private int minute = 0;
 
@@ -128,6 +128,7 @@ public class Model extends AbstractModel {
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
+        carsEntering(entranceReservedQueue);
     }
 
     /**
@@ -167,25 +168,29 @@ public class Model extends AbstractModel {
     private void carsEntering(CarQueue queue) {
         while (queue.carsInQueue() > 0 ) {
 
-                if (queue == entranceReservedQueue) {
-                    Car car = queue.removeCar();
-                    Location freeLocation = getFirstFreeReservedLocation();
-                    setCarAt(freeLocation, car);
-                }
-                else if (queue == entrancePassQueue){
-                    Car car = queue.removeCar();
-                    Location freeLocation = getFirstFreePassLocation();
-                    setCarAt(freeLocation, car);
-                }
-                else if (queue == entranceCarQueue) {
-                    Car car = queue.removeCar();
-                    Location freeLocation = getFirstFreeLocation();
-                    setCarAt(freeLocation, car);
+                 if (queue == entrancePassQueue){
 
-                    if (!car.getHasToPay()) {
-                        double priceTemp = priceReduced * (car.getMinutesTotal() / (double) 60);
-                        turnoverTotal += priceTemp;
+                    Location freeLocation = getFirstFreePassLocation();
+                    if (freeLocation != null) {
+                        Car car = queue.removeCar();
+                        setCarAt(freeLocation, car);
                     }
+                    else{
+
+                    }
+                }
+                else if (queue == entranceCarQueue || queue == entranceReservedQueue) {
+
+                    Location freeLocation = getFirstFreeLocation();
+                    if (freeLocation != null) {
+                       Car car = queue.removeCar();
+                        setCarAt(freeLocation, car);
+                    }
+                    else{
+
+                    }
+
+
 
 
                 }
@@ -284,7 +289,8 @@ public class Model extends AbstractModel {
                 break;
             case RVC:
                 for (int i = 0; i < numberOfCars; i++) {
-                    entranceCarQueue.addCar(new ReserveringCar());
+                    entranceReservedQueue.addCar(new ReserveringCar());
+                    totalCarsIndex++;
                 }
                 break;
 
@@ -415,23 +421,6 @@ public class Model extends AbstractModel {
         return null;
     }
 
-    /**
-     * @return First free reserved location in the car park.
-     */
-    public Location getFirstFreeReservedLocation() {
-        for (int floor = 2; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
     public Location getFirstFreePassLocation() {
         for (int floor = 2; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -486,21 +475,25 @@ public class Model extends AbstractModel {
     }
 
 
-    public int getTotalCarsIndex() {
-        return totalCarsIndex;
-    }
 
     public int getEntranceCarQueue() {
         return entranceCarQueue.carsInQueue();
     }
 
     public int getEntrancePassQueue() {
-        return entrancePassQueue.carsInQueue();
+        int passReservedQueue = (entrancePassQueue.carsInQueue()+entranceReservedQueue.carsInQueue());
+        return passReservedQueue;
     }
 
     public int getExitCarQueue() {
         return exitCarQueue.carsInQueue();
     }
+
+
+    public int getTotalCarsIndex() {
+        return totalCarsIndex;
+    }
+
 
     public int getExitIndex() {
         return exitIndex;
@@ -594,6 +587,18 @@ public class Model extends AbstractModel {
         if(max < i){
             CarQueue.warningOverCrowdedQueue();
         }
+    }
+    public int getHours()
+    {
+        return hour;
+    }
+    public int getMinutes()
+    {
+        return minute;
+    }
+    public int getDays()
+    {
+        return day;
     }
 
 }
