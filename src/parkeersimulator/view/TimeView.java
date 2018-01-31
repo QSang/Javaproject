@@ -5,12 +5,23 @@ import parkeersimulator.logic.Model;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Create a time view
+ * @author Sjoerd Feenstra
+ **/
+
+
 public class TimeView extends AbstractView {
 
     private JLabel txtTime;
     private JLabel txtDays;
 
-    private Model model;
+    public Model model;
+
+    /**
+     * Constructor of TypeOfCarView
+     * @param model gives information from the simulator
+     **/
 
     public TimeView(Model model) {
         super(model);
@@ -29,10 +40,11 @@ public class TimeView extends AbstractView {
     }
 
     /**
-     * Updates the view so the numbers inside the textfield change accordingly
+     * Updates the view so the numbers keeps changing in the textfield
      */
+
     public void updateView(){
-        Model model = (Model) super.model;
+        Model model = super.model;
 
         String hour = String.valueOf(model.getHours());
         String minutes= String.valueOf(model.getMinutes());

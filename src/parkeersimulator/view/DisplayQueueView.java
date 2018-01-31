@@ -5,6 +5,11 @@ import java.awt.*;
 
 import parkeersimulator.logic.*;
 
+/**
+ * @author Sang Nguyen
+ * Creates a view for overcrowded queue's
+ */
+
 public class DisplayQueueView extends AbstractView{
     private JTextField txtEntranceQueue;
     private JTextField txtEntrancePassQueue;
@@ -13,80 +18,74 @@ public class DisplayQueueView extends AbstractView{
     private JTextField txtCurrentRevenue;
     private JTextField txtTotalRevenue;
 
-
     private Model model;
 
     private int exitIndex;
     private int totalCarsIndex;
     double ticketPrice = 5.0;
+
     /**
-     * Constructor for TextOverview
+     * Constructor for DisplayQueueView
      */
+
     public DisplayQueueView(Model model) {
         super(model);
         this.model = model;
 
-        /**
-         * Entrance Queue JTextField and JLabel
-         */
-        JLabel lblEntranceQueue = new JLabel("Entrance Car Queue:                            ");
+    /**
+     * JTextField and JLabel for EntranceQueue, EntrancePassQueue, Total cars exiting, CurrentRevenue, TotalRevenue
+     */
+        JLabel EntranceQueueLabel = new JLabel("Entrance Car Queue:                            ");
         txtEntranceQueue = new JTextField("0");
         txtEntranceQueue.setColumns(5);
         txtEntranceQueue.setOpaque(false);
         txtEntranceQueue.setEditable(false);
         txtEntranceQueue.setHorizontalAlignment(JTextField.CENTER);
         txtEntranceQueue.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(lblEntranceQueue);
+        add(EntranceQueueLabel);
         add(txtEntranceQueue);
 
-        /**
-         * Entrance Pass Queue JTextField and JLabel
-         */
-
-        JLabel lblEntrancePassQueue = new JLabel("Entrance Pass/Reserved Queue:      ");
+        JLabel entrancePassQueueLabel = new JLabel("Entrance Pass/Reserved Queue:      ");
         txtEntrancePassQueue = new JTextField("0");
         txtEntrancePassQueue.setColumns(5);
         txtEntrancePassQueue.setEditable(false);
         txtEntrancePassQueue.setOpaque(false);
         txtEntrancePassQueue.setHorizontalAlignment(JTextField.CENTER);
         txtEntrancePassQueue.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(lblEntrancePassQueue);
+        add(entrancePassQueueLabel);
         add(txtEntrancePassQueue);
 
-        /**
-         * Exit Queue JTextField and JLabel
-         */
-        JLabel lblExit = new JLabel("Total cars Exiting:                                  ");
+        JLabel exitLabel = new JLabel("Total cars Exiting:                                  ");
         txtExit = new JTextField("0");
         txtExit.setColumns(5);
         txtExit.setEditable(false);
         txtExit.setOpaque(false);
         txtExit.setHorizontalAlignment(JTextField.CENTER);
         txtExit.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(lblExit);
+        add(exitLabel);
         add(txtExit);
 
-        JLabel lblTotalCars = new JLabel("Total cars used:                                     ");
+        JLabel totalCarsLabel = new JLabel("Total cars used:                                     ");
         txtTotalCars = new JTextField("0");
         txtTotalCars.setColumns(5);
         txtTotalCars.setEditable(false);
         txtTotalCars.setOpaque(false);
         txtTotalCars.setHorizontalAlignment(JTextField.CENTER);
         txtTotalCars.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(lblTotalCars);
+        add(totalCarsLabel);
         add(txtTotalCars);
 
-        JLabel lblCurrentRevenue = new JLabel("Current Revenue:                        ");
+        JLabel currentRevenueLabel = new JLabel("Current Revenue:                        ");
         txtCurrentRevenue = new JTextField("   0");
         txtCurrentRevenue.setColumns(8);
         txtCurrentRevenue.setEditable(false);
         txtCurrentRevenue.setOpaque(false);
         txtCurrentRevenue.setHorizontalAlignment(JTextField.CENTER);
         txtCurrentRevenue.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(lblCurrentRevenue);
+        add(currentRevenueLabel);
         add(txtCurrentRevenue);
 
-        JLabel lblTotalRevenue = new JLabel("Total Revenue:                            ");
+        JLabel totalRevenueLabel = new JLabel("Total Revenue:                            ");
         txtTotalRevenue = new JTextField("   0");
         txtTotalRevenue.setColumns(8);
         txtTotalRevenue.setEditable(false);
@@ -94,11 +93,11 @@ public class DisplayQueueView extends AbstractView{
 
         txtTotalRevenue.setHorizontalAlignment(JTextField.CENTER);
         txtTotalRevenue.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(lblTotalRevenue);
+        add(totalRevenueLabel);
         add(txtTotalRevenue);
 
-        calcRevenue();
-        calcExpRevenue();
+        calculateRevenue();
+        calculateCurrentRevenue();
     }
 
     /**
@@ -118,15 +117,16 @@ public class DisplayQueueView extends AbstractView{
         setVisible(true);
 
         super.updateView();
-        calcRevenue();
-        calcExpRevenue();
+        calculateRevenue();
+        calculateCurrentRevenue();
 
     }
+
     /**
-     * calculates the revenue
+     * when the cars leave the garage, calculate the total revenue
      */
 
-    public void calcRevenue()
+    public void calculateRevenue()
     {
         int totalCars = model.getPayingCars();
         double totalRevenue = totalCars * ticketPrice;
@@ -134,10 +134,12 @@ public class DisplayQueueView extends AbstractView{
         txtTotalRevenue.setText(" € "+totalRevenue+"0");
 
     }
+
     /**
-     * Calculates the expected Revenue of cars which still have to pay.
+     * Calculate the current revenue of cars which still have to pay.
      */
-    public void calcExpRevenue(){
+
+    public void calculateCurrentRevenue(){
 
         int totalCurrentCars = CarParkView.GetAdHoc();
 

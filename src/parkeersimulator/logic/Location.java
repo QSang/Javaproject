@@ -1,5 +1,10 @@
 package parkeersimulator.logic;
 
+/**
+ * Creates Location of the cars
+ * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
+ */
+
 public class Location {
 
     private int floor;

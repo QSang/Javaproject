@@ -8,7 +8,14 @@ import parkeersimulator.logic.*;
 
 import javax.swing.*;
 
-public class GegevensController extends AbstractController implements ActionListener {
+/**
+ * Class for settingsController in the simulator
+ * has textfields, action eventlisteners, buttons, labels
+ * @author Sjoerd Feenstra
+ *
+ */
+
+public class SettingsController extends AbstractController implements ActionListener {
     private JTextField weekDayArText;
     private JTextField weekendArText;
     private JTextField weekDayPassArText;
@@ -21,8 +28,8 @@ public class GegevensController extends AbstractController implements ActionList
 
     private ActionEvent event;
 
-    private JButton Set;
-    private JButton Reset;
+    private JButton set;
+    private JButton reset;
 
     private JLabel weekDayArLabel;
     private JLabel weekendArLabel;
@@ -34,8 +41,11 @@ public class GegevensController extends AbstractController implements ActionList
     private JLabel paymentSpLabel;
     private JLabel exitSpLabel;
 
+    /**
+     * Constructs the constructor for SettingsController
+     */
 
-    public GegevensController(Model model) {
+    public SettingsController(Model model) {
         super(model);
 
         weekDayArLabel = new JLabel("Weekday Car Arrivals:                   ");
@@ -111,23 +121,22 @@ public class GegevensController extends AbstractController implements ActionList
         add(exitSpLabel);
         add(exitSpText);
 
-        Set = new JButton("Set");
-        Set.addActionListener((ActionListener) this);
-        Set.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
-        Set.setPreferredSize(new Dimension(70, 20));
-        Set.setBackground(Color.BLUE);
-        Set.setForeground(Color.WHITE);
-        add(Set);
+        set = new JButton("Set");
+        set.addActionListener((ActionListener) this);
+        set.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+        set.setPreferredSize(new Dimension(70, 20));
+        set.setBackground(Color.BLUE);
+        set.setForeground(Color.WHITE);
+        add(set);
 
-        Reset = new JButton("Reset");
-        Reset.addActionListener((ActionListener) this);
-        Reset.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
-        Reset.setPreferredSize(new Dimension(70, 20));
-        Reset.setBackground(Color.BLUE);
-        Reset.setForeground(Color.WHITE);
-        add(Reset);
+        reset = new JButton("Reset");
+        reset.addActionListener((ActionListener) this);
+        reset.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+        reset.setPreferredSize(new Dimension(70, 20));
+        reset.setBackground(Color.BLUE);
+        reset.setForeground(Color.WHITE);
+        add(reset);
     }
-
 
     public void setActionEvent(ActionEvent e) {
         event = e;
@@ -143,58 +152,49 @@ public class GegevensController extends AbstractController implements ActionList
         return event;
     }
 
-
     /**
      * Executes the the input action
+     * Creates the commands that the buttons execute
      */
-
     public void actionPerformed(ActionEvent e) {
-
-        //sets the received actionEvent, and creates a new thread
         setActionEvent(e);
         Thread performerThread = new Thread() {
 
+        public void run() {
+            ActionEvent e = getActionEvent();
+            String command = e.getActionCommand();
 
-            /**
-             * Creates the commands that the buttons execute
-             */
-            public void run() {
-                ActionEvent e = getActionEvent();
-                String command = e.getActionCommand();
+            if (command == "Set") {
+                int weekAr = Integer.parseInt(weekDayArText.getText().trim());
+                model.changeWeekAr(weekAr);
 
-                if (command == "Set") {
-                    int weekAr = Integer.parseInt(weekDayArText.getText().trim());
-                    model.ChangeWeekAr(weekAr);
+                int weekendAr = Integer.parseInt(weekendArText.getText().trim());
+                model.changeWeekendAr(weekendAr);
 
-                    int weekendAr = Integer.parseInt(weekendArText.getText().trim());
-                    model.ChangeWeekendAr(weekendAr);
+                int weekP = Integer.parseInt(weekDayPassArText.getText().trim());
+                model.changeWeekP(weekP);
 
-                    int weekP = Integer.parseInt(weekDayPassArText.getText().trim());
-                    model.ChangeWeekP(weekP);
+                int weekendP = Integer.parseInt(weekendPassArText.getText().trim());
+                model.changeWeekendP(weekendP);
 
-                    int weekendP = Integer.parseInt(weekendPassArText.getText().trim());
-                    model.ChangeWeekendP(weekendP);
+                int weekRes = Integer.parseInt(weekDayReservedArText.getText().trim());
+                model.changeWeekRes(weekRes);
 
-                    int weekRes = Integer.parseInt(weekDayReservedArText.getText().trim());
-                    model.ChangeWeekRes(weekRes);
+                int weekendRes = Integer.parseInt(weekendReservedArText.getText().trim());
+                model.changeWeekendRes(weekendRes);
 
-                    int weekendRes = Integer.parseInt(weekendReservedArText.getText().trim());
-                    model.ChangeWeekendRes(weekendRes);
+                int entrySpeed = Integer.parseInt(enterSpText.getText().trim());
+                model.changeEntrySpeed(entrySpeed);
 
-                    int entrySpeed = Integer.parseInt(enterSpText.getText().trim());
-                    model.ChangeEntrySpeed(entrySpeed);
+                int paySpeed = Integer.parseInt(paymentSpText.getText().trim());
+                model.changePaySpeed(paySpeed);
 
-                    int paySpeed = Integer.parseInt(paymentSpText.getText().trim());
-                    model.ChangePaySpeed(paySpeed);
+                int exitSpeed = Integer.parseInt(exitSpText.getText().trim());
+                model.changeExitSpeed(exitSpeed);
 
-                    int exitSpeed = Integer.parseInt(exitSpText.getText().trim());
-                    model.ChangeExitSpeed(exitSpeed);
-
-
-                    model.setSet(true);
-                    model.setStart(false);
-
-                }
+                model.setSet(true);
+                model.setStart(false);
+            }
                 if (command == "Reset") {
 
                     weekDayArText.setText("100");
@@ -207,8 +207,6 @@ public class GegevensController extends AbstractController implements ActionList
                     paymentSpText.setText("7");
                     exitSpText.setText("5");
                     model.setSet(false);
-
-
                 }
             }
         };

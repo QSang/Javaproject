@@ -1,9 +1,11 @@
 package parkeersimulator.logic;
-import javax.swing.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
+/**
+ * Creates CarQueue of Parking Garage
+ * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
+ */
 
 public class CarQueue {
     private Queue<Car> queue = new LinkedList<>();
@@ -46,12 +48,5 @@ public class CarQueue {
     }
 
 
-    public static void warningOverCrowdedCars() {
-        JOptionPane.showMessageDialog(null, "De parkeergarage heeft zijn maximum overtreden");
-    }
 
-
-    public static void warningOverCrowdedQueue() {
-        JOptionPane.showMessageDialog(null, "De wachtrij heeft zijn maximum overtreden");
-    }
 }
