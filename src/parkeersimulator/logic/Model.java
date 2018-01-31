@@ -17,6 +17,7 @@ public class Model extends AbstractModel {
     private static final String RVC = "3";
 
     private CarQueue entranceCarQueue;
+    private CarQueue entranceReservedQueue;
     private CarQueue entrancePassQueue;
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
@@ -60,10 +61,12 @@ public class Model extends AbstractModel {
 
         cars = new Car[numberOfFloors][numberOfRows][numberOfPlaces];
         entranceCarQueue = new CarQueue();
+        entranceReservedQueue = new CarQueue();
         entrancePassQueue = new CarQueue();
         paymentCarQueue = new CarQueue();
         exitCarQueue = new CarQueue();
         price = 2.4;
+        priceReduced = 2.0;
         turnoverTotal = 0.0;
 
     }
@@ -162,27 +165,33 @@ public class Model extends AbstractModel {
      * @param queue Queue at the entrance of the car park.
      */
     private void carsEntering(CarQueue queue) {
-        int i = 0;
-        while (queue.carsInQueue() > 0 && i < enterSpeed && ((queue.peekCar().getHasReserved() && getNumberOfOpenReservedSpots() > 0) || (!queue.peekCar().getHasReserved() && getNumberOfOpenReservedSpots() > 0))) {
-            if (queue.peekCar().getHasReserved() && getNumberOfOpenReservedSpots() > 0) {
-                Car car = queue.removeCar();
-                Location freeLocation = getFirstFreeReservedLocation();
-                setCarAt(freeLocation, car);
-                i++;
-            } else if (!queue.peekCar().getHasReserved() && getNumberOfOpenSpots() > 0) {
-                Car car = queue.removeCar();
-                Location freeLocation = getFirstFreeLocation();
-                setCarAt(freeLocation, car);
+        while (queue.carsInQueue() > 0 ) {
 
-                if (!car.getHasToPay()) {
-                    double priceTemp = priceReduced * (car.getMinutesTotal() / (double) 60);
-                    turnoverTotal += priceTemp;
+                if (queue == entranceReservedQueue) {
+                    Car car = queue.removeCar();
+                    Location freeLocation = getFirstFreeReservedLocation();
+                    setCarAt(freeLocation, car);
                 }
+                else if (queue == entrancePassQueue){
+                    Car car = queue.removeCar();
+                    Location freeLocation = getFirstFreePassLocation();
+                    setCarAt(freeLocation, car);
+                }
+                else if (queue == entranceCarQueue) {
+                    Car car = queue.removeCar();
+                    Location freeLocation = getFirstFreeLocation();
+                    setCarAt(freeLocation, car);
 
-                i++;
+                    if (!car.getHasToPay()) {
+                        double priceTemp = priceReduced * (car.getMinutesTotal() / (double) 60);
+                        turnoverTotal += priceTemp;
+                    }
+
+
+                }
             }
         }
-    }
+
 
     /**
      * Removes cars from parking spots and if necessary, adds cars to the payment queue.
@@ -278,6 +287,7 @@ public class Model extends AbstractModel {
                     entranceCarQueue.addCar(new ReserveringCar());
                 }
                 break;
+
         }
     }
 
@@ -422,6 +432,20 @@ public class Model extends AbstractModel {
         return null;
     }
 
+    public Location getFirstFreePassLocation() {
+        for (int floor = 2; floor < getNumberOfFloors(); floor++) {
+            for (int row = 0; row < getNumberOfRows(); row++) {
+                for (int place = 0; place < getNumberOfPlaces(); place++) {
+                    Location location = new Location(floor, row, place);
+                    if (getCarAt(location) == null) {
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     /**
      * Runs through all parking spots and checks if it is occupied. If so, it checks if the car has to leave yet and if the car is not currently not paying.
      *
@@ -461,6 +485,12 @@ public class Model extends AbstractModel {
         String text = String.format("%.2f", (double) turnoverTotal);
     }
 
+
+    public int getTotalCarsIndex() {
+        return totalCarsIndex;
+        String text = String.format("%.2f", (double) turnoverTotal);
+    }
+
     public int getEntranceCarQueue() {
         return entranceCarQueue.carsInQueue();
     }
@@ -472,6 +502,20 @@ public class Model extends AbstractModel {
     public int getExitCarQueue() {
         return exitCarQueue.carsInQueue();
     }
+
+    public int getExitIndex() {
+        return exitIndex;
+    }
+
+
+    public int getPayingCars() {
+        return payingCars;
+    }
+        /**
+         * Getter for the pay cash index.
+         * @return int pay cash index.
+         */
+
 
     public int getTotalCarsIndex() {
         return totalCarsIndex;
