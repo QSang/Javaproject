@@ -6,65 +6,69 @@ import javax.swing.*;
 import parkeersimulator.logic.*;
 
 public class TypeOfCarView extends AbstractView{
-    private JTextField TadHoc;
-    private JTextField TpassHolder;
-    private JTextField TreservedSpots;
-    private JTextField TreservedCar;
-    private JTextField Tempty;
+    private JTextField adHoc;
+    private JTextField passHolder;
+    private JTextField reservedCar;
+    private JTextField empty;
+    private JTextField reservationSpot;
 
     public TypeOfCarView(Model model) {
         super(model);
 
-        JLabel adHoc = new JLabel("Percentage of Adhoc Cars:                ");
-        TadHoc = new JTextField("   0%  ");
-        TadHoc.setColumns(4);
-        TadHoc.setEditable(false);
-        TadHoc.setBackground(Color.RED);
-        TadHoc.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        JLabel adHocLabel = new JLabel("Percentage of Adhoc Cars:                ");
+        adHoc = new JTextField("   0%  ");
+        adHoc.setColumns(4);
+        adHoc.setEditable(false);
+        adHoc.setBackground(Color.RED);
+        adHoc.setHorizontalAlignment(JTextField.CENTER);
+        adHoc.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        add(adHocLabel);
         add(adHoc);
-        add(TadHoc);
 
         /*
          * Create a JTextField and JLabel for the ParkingPass Cars
          */
-        JLabel passHolder = new JLabel("Percentage of Parking Pass Cars:   ");
-        TpassHolder = new JTextField("   0%  ");
-        TpassHolder.setColumns(4);
-        TpassHolder.setEditable(false);
-        TpassHolder.setBackground(Color.decode("#0077FF"));
-        TpassHolder.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        JLabel passHolderLabel = new JLabel("Percentage of Parking Pass Cars:   ");
+        passHolder = new JTextField("   0%  ");
+        passHolder.setColumns(4);
+        passHolder.setEditable(false);
+        passHolder.setBackground(Color.decode("#0077FF"));
+        passHolder.setHorizontalAlignment(JTextField.CENTER);
+        passHolder.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        add(passHolderLabel);
         add(passHolder);
-        add(TpassHolder);
 
-        JLabel reservedSpots = new JLabel("Percentage of Reserving Spots:         ");
-        TreservedSpots = new JTextField("  0%  ");
-        TreservedSpots.setColumns(4);
-        TreservedSpots.setEditable(false);
-        TreservedSpots.setBackground(Color.magenta);
-        TreservedSpots.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(reservedSpots);
-        add(TreservedSpots);
+        JLabel reservedSpotLabel = new JLabel("Percentage of Reservation Spots:    ");
+        reservationSpot = new JTextField("   0%  ");
+        reservationSpot.setColumns(4);
+        reservationSpot.setEditable(false);
+        reservationSpot.setBackground(Color.MAGENTA);
+        reservationSpot.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        add(reservedSpotLabel);
+        add(reservationSpot);
 
-        JLabel reservedCars = new JLabel("Percentage of Reserved Cars:         ");
-        TreservedCar = new JTextField("  0%  ");
-        TreservedCar.setColumns(4);
-        TreservedCar.setEditable(false);
-        TreservedCar.setBackground(Color.green);
-        TreservedCar.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(reservedCars);
-        add(TreservedCar);
+        JLabel reservedCarLabel = new JLabel("Percentage of Reserving Cars:         ");
+        reservedCar = new JTextField("  0%  ");
+        reservedCar.setColumns(4);
+        reservedCar.setEditable(false);
+        reservedCar.setBackground(Color.green);
+        reservedCar.setHorizontalAlignment(JTextField.CENTER);
+        reservedCar.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        add(reservedCarLabel);
+        add(reservedCar);
 
         /*
          * Create a JTextField and JLabel for the Empty Spots in the garage
          */
-        JLabel emptySpots = new JLabel("Percentage of Empty Spots:           ");
-        Tempty = new JTextField("  100%  ");
-        Tempty.setColumns(4);
-        Tempty.setEditable(false);
-        Tempty.setBackground(Color.white);
-        Tempty.setBorder(BorderFactory.createLineBorder(Color.black,1));
-        add(emptySpots);
-        add(Tempty);
+        JLabel emptySpotsLabel = new JLabel("Percentage of Empty Spots:               ");
+        empty = new JTextField("  100%  ");
+        empty.setColumns(4);
+        empty.setEditable(false);
+        empty.setBackground(Color.white);
+        empty.setHorizontalAlignment(JTextField.CENTER);
+        empty.setBorder(BorderFactory.createLineBorder(Color.black,1));
+        add(emptySpotsLabel);
+        add(empty);
 
     }
 
@@ -80,36 +84,35 @@ public class TypeOfCarView extends AbstractView{
      */
     public void calculatePercentage() {
         double garageSize = 540;
-        double adHoc = CarParkView.GetAdHoc();
-        double passCar = CarParkView.GetParkPass();
-        double reserveCars = CarParkView.GetReserveringCars();
-        double reservedSpots = CarParkView.GetReservedSpot();
+        double AdHoc = CarParkView.GetAdHoc();
+        double PassCar = CarParkView.GetParkPass();
+        double ReservingCars = CarParkView.GetReserveringCars();
+        double ReservedSpot = CarParkView.GetReservedSpot();
 
-        int adHocCar;
-        int passParkCar;
-        int reservedCar;
-        int reservedCarSpots;
+        int AdHocCar;
+        int PassParkCar;
+        int ReservedSpots;
+        int ReservingCar;
 
-        int EmptySpots = (int) ((int) 540 - adHoc - passCar - reserveCars - reservedSpots);
+        int EmptySpots = (int) ((int) 540 - AdHoc - PassCar - ReservedSpot  - ReservingCars);
         int Empty = (int) (((100 / garageSize) * EmptySpots));
 
-        adHocCar = (int) (((100 / garageSize) * adHoc));
-        passParkCar = (int) (((100 / garageSize) * passCar));
-        reservedCar = (int) (((100 / garageSize) * reserveCars));
-        reservedCarSpots = (int) (((100 / garageSize) * reservedSpots));
+        AdHocCar = (int) (((100 / garageSize) * AdHoc));
+        PassParkCar = (int) (((100 / garageSize) * PassCar));
+        ReservedSpots = (int) (((100 / garageSize) * ReservedSpot));
+        ReservingCar = (int) (((100 / garageSize) * ReservingCars));
 
-        String a = String.valueOf(adHocCar);
-        String p = String.valueOf(passParkCar);
-        String s = String.valueOf(reservedCarSpots);
-        String r = String.valueOf(reservedCar);
+        String a = String.valueOf(AdHocCar);
+        String p = String.valueOf(PassParkCar);
+        String Rs = String.valueOf(ReservedSpots);
+        String r = String.valueOf(ReservingCar);
         String e = String.valueOf(Empty);
 
-        TadHoc.setText("   " + a + "%");
-        TpassHolder.setText("   " + p + "%");
-        Tempty.setText("   " + e + "%");
-        TreservedCar.setText("   " + r + "%");
-        TreservedSpots.setText("   " + s + "%");
-
+        adHoc.setText("   " + a + "%");
+        passHolder.setText("   " + p + "%");
+        empty.setText("   " + e + "%");
+        reservationSpot.setText("   "+ Rs +"%");
+        reservedCar.setText("   " + r + "%");
 
     }
-    }
+}

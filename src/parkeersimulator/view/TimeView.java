@@ -16,10 +16,6 @@ public class TimeView extends AbstractView {
         super(model);
         this.model = model;
 
-        /**
-         *
-         */
-
         txtTime = new JLabel("Time: 00:00");
         txtTime.setOpaque(false);
         txtTime.setBorder(BorderFactory.createLineBorder(Color.black,1));
@@ -57,6 +53,4 @@ public class TimeView extends AbstractView {
         super.updateView();
 
     }
-
-
 }
