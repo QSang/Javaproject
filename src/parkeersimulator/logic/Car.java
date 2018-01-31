@@ -1,4 +1,4 @@
-package Parkeersimulator.logic;
+package parkeersimulator.logic;
 
 import java.awt.Color;
 
@@ -12,6 +12,7 @@ public abstract class Car {
     private boolean hasToPay;
     private boolean hasReserved;
     private boolean hasReducedPrice;
+    private int ArrivalTime;
 
     /**
      * Constructor for objects of class Car
@@ -20,6 +21,28 @@ public abstract class Car {
 
     }
 
+    public int setArrivalTime(int time){
+        ArrivalTime = time;
+        return ArrivalTime;
+    }
+
+    /*
+    Hier wordt de tijd opgehaald totdat een auto arriveert.
+     */
+
+    public int getArrivalTime(){
+        return ArrivalTime;
+    }
+
+    /*
+    Doormiddel van deze methode wordt er een minuut per tick van de tijd afgehaald totdat de ArrivalTime bereikt is.
+     */
+    public void removeArrivalTime(){
+        if (ArrivalTime != 0){
+            ArrivalTime--;
+        }
+
+    }
     /**
      * Returns location of the car.
      *
@@ -133,6 +156,9 @@ public abstract class Car {
      */
     public void tick() {
         minutesLeft--;
+        if (ArrivalTime != 0){
+            ArrivalTime--;
+        }
     }
 
     public abstract Color getColor();

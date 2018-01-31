@@ -60,7 +60,6 @@ public class CarParkMain {
         overCrowdedView.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
-
         controller.setBounds(125, 700, 875, 500);
         controller2.setBounds(5, 10, 200, 420);
 
@@ -69,7 +68,7 @@ public class CarParkMain {
         displayQueueView.setBounds(5,580,300,145);
         pieView.setBounds(810, 440, 280, 280);
         overCrowdedView.setBounds(340,440,440,250);
-        timeView.setBounds(125,740,875,250);
+        timeView.setBounds(340,740,440,250);
 
         Color displayQueueBg = new Color(0xDBEEF4);
 

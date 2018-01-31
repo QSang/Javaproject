@@ -1,6 +1,9 @@
-package Parkeersimulator.logic;
+package parkeersimulator.logic;
+import javax.swing.*;
 import java.util.LinkedList;
 import java.util.Queue;
+
+
 
 public class CarQueue {
     private Queue<Car> queue = new LinkedList<>();
@@ -8,8 +11,8 @@ public class CarQueue {
     /**
      * Adds a car to the queue and returns the queue.
      *
-     * @param car   Car to add to the queue.
-     * @return  Queue with the car added.
+     * @param car Car to add to the queue.
+     * @return Queue with the car added.
      */
     public boolean addCar(Car car) {
         return queue.add(car);
@@ -18,7 +21,7 @@ public class CarQueue {
     /**
      * Removes a car from the head of the queue and returns the queue.
      *
-     * @return  Queue
+     * @return Queue
      */
     public Car removeCar() {
         return queue.poll();
@@ -27,7 +30,7 @@ public class CarQueue {
     /**
      * Retrieves, but does not remove, the head of this queue, or returns null if this queue is empty.
      *
-     * @return  Queue
+     * @return Queue
      */
     public Car peekCar() {
         return queue.peek();
@@ -36,9 +39,19 @@ public class CarQueue {
     /**
      * Returns amounts of car in the queue.
      *
-     * @return  Size of queue.
+     * @return Size of queue.
      */
-    public int carsInQueue(){
+    public int carsInQueue() {
         return queue.size();
+    }
+
+
+    public static void warningOverCrowdedCars() {
+        JOptionPane.showMessageDialog(null, "De parkeergarage heeft zijn maximum overtreden");
+    }
+
+
+    public static void warningOverCrowdedQueue() {
+        JOptionPane.showMessageDialog(null, "De wachtrij heeft zijn maximum overtreden");
     }
 }
