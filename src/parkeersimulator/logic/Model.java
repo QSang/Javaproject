@@ -462,17 +462,23 @@ public class Model extends AbstractModel {
         return exitCarQueue.carsInQueue();
     }
 
-
+    /**
+     * returns the total cars value
+     */
     public int getTotalCarsIndex() {
         return totalCarsIndex;
     }
 
-
+    /**
+     * returns the cars exiting the garage value
+     */
     public int getExitIndex() {
         return exitIndex;
     }
 
-
+    /**
+     * returns the cars that paid the garage
+     */
     public int getPayingCars() {
         return payingCars;
     }
