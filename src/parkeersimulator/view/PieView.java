@@ -4,10 +4,11 @@ import java.awt.*;
 import parkeersimulator.logic.*;
 
 public class PieView extends AbstractView {
-    private int aantalAdHoc;
-    private int aantalPassCar;
-    private int aantalEmpty;
-    private int aantalReserveringsCars;
+    private int amountAdHoc;
+    private int amountPassCar;
+    private int amountEmpty;
+    private int amountReservedCars;
+    private int amountReservedSpots;
 
     /**
      * Creates the constructor
@@ -34,22 +35,30 @@ public class PieView extends AbstractView {
     protected void paintComponent(Graphics a) {
         super.paintComponent(a);
 
-        aantalAdHoc = CarParkView.GetAdHoc();
-        aantalPassCar = CarParkView.GetParkPass();
-        aantalEmpty = 540 - aantalPassCar - aantalAdHoc;
-        aantalReserveringsCars = CarParkView.GetReserveringCars();
+        amountAdHoc = CarParkView.GetAdHoc();
+        amountPassCar = CarParkView.GetParkPass();
+        amountReservedCars = CarParkView.GetReserveringCars();
+        amountReservedSpots = CarParkView.GetReservedSpot();
 
-        a.setColor(Color.red);
-        a.fillArc(15, 15, 250, 250, 0, calculateDegrees(aantalAdHoc));
-
-        a.setColor(Color.decode("#0077FF"));
-        a.fillArc(15, 15, 250, 250, calculateDegrees(aantalAdHoc), calculateDegrees(aantalPassCar));
+        amountEmpty = 540 - amountPassCar - amountAdHoc - amountReservedCars - amountReservedSpots;
 
         a.setColor(Color.white);
-        a.fillArc(15, 15, 250, 250, calculateDegrees(aantalAdHoc) + calculateDegrees(aantalPassCar), calculateDegrees(aantalEmpty));
+        a.fillArc(15, 15, 250, 250, 350, 360);
+
+        a.setColor(Color.red);
+        a.fillArc(15, 15, 250, 250, 0, calculateDegrees(amountAdHoc));
+
+        a.setColor(Color.decode("#0077FF"));
+        a.fillArc(15, 15, 250, 250, calculateDegrees(amountAdHoc), calculateDegrees(amountPassCar));
+
+        a.setColor(Color.magenta);
+        a.fillArc(15, 15, 250, 250, calculateDegrees(amountAdHoc) + calculateDegrees(amountPassCar), calculateDegrees(amountReservedSpots));
 
         a.setColor(Color.green);
-        a.fillArc(15, 15, 250, 250, calculateDegrees(aantalAdHoc) + calculateDegrees(aantalPassCar) + calculateDegrees(aantalEmpty), calculateDegrees(aantalReserveringsCars));
+        a.fillArc(15, 15, 250, 250, calculateDegrees(amountAdHoc) + calculateDegrees(amountPassCar) + calculateDegrees(amountReservedSpots),calculateDegrees(amountReservedCars));
+
+        a.setColor(Color.white);
+        a.fillArc(15, 15, 250, 250, calculateDegrees(amountAdHoc) + calculateDegrees(amountPassCar) + calculateDegrees(amountReservedSpots), calculateDegrees(amountEmpty));
 
         updateView();
     }

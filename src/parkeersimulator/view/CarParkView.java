@@ -59,6 +59,7 @@ public class CarParkView extends AbstractView {
         AdHocCar = 0;
         ParkPassCar = 0;
         ReserveringCar =0;
+        ReservedSpot = 0;
 
         if (!size.equals(getSize()))
         {
@@ -92,7 +93,7 @@ public class CarParkView extends AbstractView {
                         drawPlace(graphics, location, color3);
                         ReservedSpot++;
                     }
-                    else if(car != null && car.getClass().equals(ReserveringCar.class)){
+                    else if(car != null && car.getClass().equals(ReserveringCar.class) && car.getArrivalTime() == 0){
                         Color color3 = Color.green;
                         drawPlace(graphics, location, color3);
                         ReserveringCar++;
@@ -125,7 +126,6 @@ public class CarParkView extends AbstractView {
     public static int GetParkPass(){
         return ParkPassCar;
     }
-    public static int GetReserveringCar(){return ReserveringCar;}
     public static int GetReservedSpot(){ return ReservedSpot;}
 
     public static int GetReserveringCars(){

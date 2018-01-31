@@ -488,7 +488,6 @@ public class Model extends AbstractModel {
 
     public int getTotalCarsIndex() {
         return totalCarsIndex;
-        String text = String.format("%.2f", (double) turnoverTotal);
     }
 
     public int getEntranceCarQueue() {
@@ -507,27 +506,6 @@ public class Model extends AbstractModel {
         return exitIndex;
     }
 
-
-    public int getPayingCars() {
-        return payingCars;
-    }
-        /**
-         * Getter for the pay cash index.
-         * @return int pay cash index.
-         */
-
-
-    public int getTotalCarsIndex() {
-        return totalCarsIndex;
-    }
-
-    public int getExitIndex() {
-        return exitIndex;
-    }
-
-    public int getTotalAllCarsInQueue() {
-        return payingCars;
-    }
 
     public int getPayingCars() {
         return payingCars;
