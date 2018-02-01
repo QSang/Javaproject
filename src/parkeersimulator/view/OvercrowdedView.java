@@ -1,10 +1,13 @@
 package parkeersimulator.view;
 
-
 import parkeersimulator.logic.*;
 
-import java.awt.*;
 import javax.swing.*;
+
+/**
+ * @author Sang Nguyen
+ * Creates a view for overcrowded queue's
+ */
 
 public class OvercrowdedView extends AbstractView {
 
@@ -19,6 +22,11 @@ public class OvercrowdedView extends AbstractView {
     private JProgressBar carQueueBar;
     private JProgressBar passQueueBar;
     private JProgressBar exitQueueBar;
+
+    /**
+     * Creates the OvercrowdedView constructor
+     * @param model invoke the overridden methods and get information from model
+     */
 
     public OvercrowdedView(Model model) {
         super(model);
@@ -47,6 +55,10 @@ public class OvercrowdedView extends AbstractView {
         updateView();
     }
 
+    /**
+     * Updates the view so the numbers keeps changing in the progressbar
+     */
+
     public void updateView() {
         Model model = super.model;
 
@@ -54,7 +66,7 @@ public class OvercrowdedView extends AbstractView {
         amountPassCars = model.getEntrancePassQueue();
         amountExitCars = model.getExitCarQueue();
 
-        int maxCars = model.getEntrancePassQueue() + model.getEntranceCarQueue();
+        int maxCars = model.getEntrancePassQueue() + model.getEntranceCarQueue() + model.getExitCarQueue();
 
         carQueueBar.setMaximum(maxCars);
         carQueueBar.setValue(amountQueueCars);
@@ -66,6 +78,7 @@ public class OvercrowdedView extends AbstractView {
         percentBar2 = (int) Math.floor(passQueueBar.getPercentComplete() * 100);
         passQueueBar.setString(("Pass Queue Bar  ") + percentBar2 + "%");
 
+        exitQueueBar.setMaximum(maxCars);
         exitQueueBar.setValue(amountExitCars);
         percentBar3 = (int) Math.floor(exitQueueBar.getPercentComplete() * 100);
         exitQueueBar.setString(("Exit Queue Bar  ") + percentBar3 + "%");

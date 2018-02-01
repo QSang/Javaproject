@@ -1,8 +1,12 @@
 package parkeersimulator.logic;
 
 import java.util.Random;
-import javax.swing.JOptionPane;
-import parkeersimulator.view.*;
+
+/**
+ * Create the simulator and has all the information
+ * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
+ */
+
 public class Model extends AbstractModel {
 
     private int numberOfFloors;
@@ -22,7 +26,7 @@ public class Model extends AbstractModel {
     private CarQueue paymentCarQueue;
     private CarQueue exitCarQueue;
 
-    private int day = 0;
+    private int day = 1;
     private int hour = 0;
     private int minute = 0;
 
@@ -68,10 +72,9 @@ public class Model extends AbstractModel {
         price = 2.4;
         priceReduced = 2.0;
         turnoverTotal = 0.0;
-
     }
 
-    public void runCommand(int getal) {
+    public void runSimulator(int getal) {
         int i = getal;
         if (!start) {
             setStart(true);
@@ -99,7 +102,6 @@ public class Model extends AbstractModel {
             e.printStackTrace();
         }
         handleEntrance();
-
     }
 
     /**
@@ -118,7 +120,6 @@ public class Model extends AbstractModel {
         while (day > 6) {
             day -= 7;
         }
-
     }
 
     /**
@@ -128,6 +129,7 @@ public class Model extends AbstractModel {
         carsArriving();
         carsEntering(entrancePassQueue);
         carsEntering(entranceCarQueue);
+        carsEntering(entranceReservedQueue);
     }
 
     /**
@@ -166,32 +168,22 @@ public class Model extends AbstractModel {
      */
     private void carsEntering(CarQueue queue) {
         while (queue.carsInQueue() > 0 ) {
-
-                if (queue == entranceReservedQueue) {
-                    Car car = queue.removeCar();
-                    Location freeLocation = getFirstFreeReservedLocation();
+            if (queue == entrancePassQueue){
+            Location freeLocation = getFirstFreePassLocation();
+            if (freeLocation != null) {
+                Car car = queue.removeCar();
+                setCarAt(freeLocation, car);
+            }
+        }
+            else if (queue == entranceCarQueue || queue == entranceReservedQueue) {
+                Location freeLocation = getFirstFreeLocation();
+                if (freeLocation != null) {
+                   Car car = queue.removeCar();
                     setCarAt(freeLocation, car);
-                }
-                else if (queue == entrancePassQueue){
-                    Car car = queue.removeCar();
-                    Location freeLocation = getFirstFreePassLocation();
-                    setCarAt(freeLocation, car);
-                }
-                else if (queue == entranceCarQueue) {
-                    Car car = queue.removeCar();
-                    Location freeLocation = getFirstFreeLocation();
-                    setCarAt(freeLocation, car);
-
-                    if (!car.getHasToPay()) {
-                        double priceTemp = priceReduced * (car.getMinutesTotal() / (double) 60);
-                        turnoverTotal += priceTemp;
-                    }
-
-
                 }
             }
         }
-
+    }
 
     /**
      * Removes cars from parking spots and if necessary, adds cars to the payment queue.
@@ -275,19 +267,19 @@ public class Model extends AbstractModel {
                     entranceCarQueue.addCar(new AdHocCar());
                     totalCarsIndex++;
                 }
-                break;
+            break;
             case PASS:
                 for (int i = 0; i < numberOfCars; i++) {
                     entrancePassQueue.addCar(new ParkingPassCar());
                     totalCarsIndex++;
                 }
-                break;
+            break;
             case RVC:
                 for (int i = 0; i < numberOfCars; i++) {
-                    entranceCarQueue.addCar(new ReserveringCar());
+                    entranceReservedQueue.addCar(new ReservationCar());
+                    totalCarsIndex++;
                 }
-                break;
-
+            break;
         }
     }
 
@@ -320,20 +312,6 @@ public class Model extends AbstractModel {
      */
     public int getNumberOfPlaces() {
         return numberOfPlaces;
-    }
-
-    /**
-     * @return Number of open spots in the car park
-     */
-    public int getNumberOfOpenSpots() {
-        return numberOfOpenSpots;
-    }
-
-    /**
-     * @return Number of open reserved spots in the car park
-     */
-    public int getNumberOfOpenReservedSpots() {
-        return numberOfOpenReservedSpots;
     }
 
     /**
@@ -415,23 +393,6 @@ public class Model extends AbstractModel {
         return null;
     }
 
-    /**
-     * @return First free reserved location in the car park.
-     */
-    public Location getFirstFreeReservedLocation() {
-        for (int floor = 2; floor < getNumberOfFloors(); floor++) {
-            for (int row = 0; row < getNumberOfRows(); row++) {
-                for (int place = 0; place < getNumberOfPlaces(); place++) {
-                    Location location = new Location(floor, row, place);
-                    if (getCarAt(location) == null) {
-                        return location;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
     public Location getFirstFreePassLocation() {
         for (int floor = 2; floor < getNumberOfFloors(); floor++) {
             for (int row = 0; row < getNumberOfRows(); row++) {
@@ -485,115 +446,131 @@ public class Model extends AbstractModel {
         String text = String.format("%.2f", (double) turnoverTotal);
     }
 
-
-    public int getTotalCarsIndex() {
-        return totalCarsIndex;
-    }
-
+    /**
+    * Get information for the carqueue
+    */
     public int getEntranceCarQueue() {
         return entranceCarQueue.carsInQueue();
     }
 
     public int getEntrancePassQueue() {
-        return entrancePassQueue.carsInQueue();
+        int passReservedQueue = (entrancePassQueue.carsInQueue()+entranceReservedQueue.carsInQueue());
+        return passReservedQueue;
     }
 
     public int getExitCarQueue() {
         return exitCarQueue.carsInQueue();
     }
 
+    /**
+     * returns the total cars value
+     */
+    public int getTotalCarsIndex() {
+        return totalCarsIndex;
+    }
+
+    /**
+     * returns the cars exiting the garage value
+     */
     public int getExitIndex() {
         return exitIndex;
     }
 
-
+    /**
+     * returns the cars that paid the garage
+     */
     public int getPayingCars() {
         return payingCars;
     }
-        /**
-         * Getter for the pay cash index.
-         * @return int pay cash index.
-         */
 
+    /**
+     * Checks if location is within the given bounds of the car park.
+     *
+     * @param location  Location to have its validity checked
+     * @return False if location is invalid, true if location is valid.
+     */
+    private boolean locationIsValid (Location location){
+        int floor = location.getFloor();
+        int row = location.getRow();
+        int place = location.getPlace();
+        if (floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces) {
+            return false;
+        }
+        return true;
+    }
+    /**
+     * Set a different value for the adhoc, pass cars or reservation
+     *
+     * @param value change the value of the week
+     */
 
-        /**
-         * Checks if location is within the given bounds of the car park.
-         *
-         * @param location  Location to have its validity checked
-         * @return False if location is invalid, true if location is valid.
-         */
-        private boolean locationIsValid (Location location){
-            int floor = location.getFloor();
-            int row = location.getRow();
-            int place = location.getPlace();
-            if (floor < 0 || floor >= numberOfFloors || row < 0 || row > numberOfRows || place < 0 || place > numberOfPlaces) {
-                return false;
-            }
-            return true;
-        }
+    public void changeWeekAr ( int value){
+        this.weekDayArrivals = value;
+    }
+    public void changeWeekendAr ( int value){
+        this.weekendArrivals = value;
+    }
+    public void changeWeekP ( int value){
+        this.weekDayPassArrivals = value;
+    }
+    public void changeWeekendP ( int value){
+        this.weekendPassArrivals = value;
+    }
+    public void changeWeekRes ( int value){
+        this.weekDayReservedArrivals = value;
+    }
+    public void changeWeekendRes ( int value){
+        this.weekendReservedArrivals = value;
+    }
 
-        public void ChangeWeekAr ( int getal){
-            this.weekDayArrivals = getal;
-        }
-        public void ChangeWeekendAr ( int getal){
-            this.weekendArrivals = getal;
-        }
-        public void ChangeWeekP ( int getal){
-            this.weekDayPassArrivals = getal;
-        }
-        public void ChangeWeekendP ( int getal){
-            this.weekendPassArrivals = getal;
-        }
-        public void ChangeWeekRes ( int getal){
-            this.weekDayReservedArrivals = getal;
-        }
-        public void ChangeWeekendRes ( int getal){
-            this.weekendReservedArrivals = getal;
-        }
+    public void changeEntrySpeed ( int value){
+        this.enterSpeed = value;
+    }
 
-        public void ChangeEntrySpeed ( int getal){
-            this.enterSpeed = getal;
-        }
+    public void changePaySpeed ( int value){
+        this.paymentSpeed = value;
+    }
 
-        public void ChangePaySpeed ( int getal){
-            this.paymentSpeed = getal;
-        }
+    public void changeExitSpeed ( int value){
+        this.exitSpeed = value;
+    }
 
-        public void ChangeExitSpeed ( int getal){
-            this.exitSpeed = getal;
-        }
+    /**
+     * @param check if the button is settled
+     */
+    public void setSet (boolean check){
+        this.set = check;
+    }
 
-        public void setSet ( boolean check){
-            this.set = check;
-        }
-
-        public void setStop ( boolean stopping)
-        {
-            stop = stopping;
-            if (stop) {
-                setStart(false);
-            }
-        }
-
-        public void setStart ( boolean starting)
-        {
-            start = starting;
-        }
-
-    public void totalCars(){
-        int i = CarParkView.GetAdHoc() + CarParkView.GetParkPass();
-        int max = 20;
-        if(max < i){
-            CarQueue.warningOverCrowdedCars();
+    /**
+     * Check if the button is stopped
+     */
+    public void setStop (boolean stopping)
+    {
+        stop = stopping;
+        if (stop) {
+            setStart(false);
         }
     }
 
-    public void totalCarsInQueue(){
-        int i = getEntranceCarQueue() + getEntrancePassQueue();
-        int max = 10;
-        if(max < i){
-            CarQueue.warningOverCrowdedQueue();
-        }
+    /**
+     * @param starting if the button is settled
+     */
+    public void setStart (boolean starting)
+    {
+        start = starting;
     }
 
+    public int getHours()
+    {
+        return hour;
+    }
+    public int getMinutes()
+    {
+        return minute;
+    }
+    public int getDays()
+    {
+        return day;
+    }
 }

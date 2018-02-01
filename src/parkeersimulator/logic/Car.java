@@ -2,6 +2,10 @@ package parkeersimulator.logic;
 
 import java.awt.Color;
 
+/**
+ * Creates abstract class Car
+ * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
+ */
 
 public abstract class Car {
 
@@ -17,32 +21,10 @@ public abstract class Car {
     /**
      * Constructor for objects of class Car
      */
+
     public Car() {
-
     }
 
-    public int setArrivalTime(int time){
-        ArrivalTime = time;
-        return ArrivalTime;
-    }
-
-    /*
-    Hier wordt de tijd opgehaald totdat een auto arriveert.
-     */
-
-    public int getArrivalTime(){
-        return ArrivalTime;
-    }
-
-    /*
-    Doormiddel van deze methode wordt er een minuut per tick van de tijd afgehaald totdat de ArrivalTime bereikt is.
-     */
-    public void removeArrivalTime(){
-        if (ArrivalTime != 0){
-            ArrivalTime--;
-        }
-
-    }
     /**
      * Returns location of the car.
      *
@@ -161,5 +143,20 @@ public abstract class Car {
         }
     }
 
+    /**
+     * set the arrival time of the car.
+     */
+    public int setArrivalTime(int time){
+        ArrivalTime = time;
+        return ArrivalTime;
+    }
+
+    /**
+     * get the arrival time of the car.
+     */
+
+    public int getArrivalTime(){
+        return ArrivalTime;
+    }
     public abstract Color getColor();
 }

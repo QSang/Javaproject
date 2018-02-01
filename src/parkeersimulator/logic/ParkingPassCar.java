@@ -3,6 +3,11 @@ package parkeersimulator.logic;
 import java.util.Random;
 import java.awt.*;
 
+/**
+ * Creates ParkingPassCar and extends Car
+ * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
+*/
+
 public class ParkingPassCar extends Car {
     private static final Color COLOR=Color.decode("#0077FF");
 

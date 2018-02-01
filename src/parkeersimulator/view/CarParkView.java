@@ -3,6 +3,11 @@ package parkeersimulator.view;
 import java.awt.*;
 import parkeersimulator.logic.*;
 
+/**
+ * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
+ * Creates a view for overcrowded queue's
+ */
+
 public class CarParkView extends AbstractView {
 
     private Dimension size;
@@ -11,11 +16,11 @@ public class CarParkView extends AbstractView {
 
     private static int AdHocCar;
     private static int ParkPassCar;
-    private static int ReserveringCar;
+    private static int ReservedCar;
     private static int ReservedSpot;
 
     /**
-     * Constructor for objects of class CarPark
+     * Constructor for objects of class CarParkView
      */
     public CarParkView(Model model) {
         super(model);
@@ -58,7 +63,7 @@ public class CarParkView extends AbstractView {
 
         AdHocCar = 0;
         ParkPassCar = 0;
-        ReserveringCar =0;
+        ReservedCar =0;
         ReservedSpot = 0;
 
         if (!size.equals(getSize()))
@@ -88,15 +93,15 @@ public class CarParkView extends AbstractView {
                         ParkPassCar++;
 
                     }
-                    else if (car != null && car.getClass().equals(ReserveringCar.class) && car.getArrivalTime() != 0 && car.getArrivalTime() <= 15){
+                    else if (car != null && car.getClass().equals(ReservationCar.class) && car.getArrivalTime() != 0 && car.getArrivalTime() <= 15){
                         Color color3 = Color.magenta;
                         drawPlace(graphics, location, color3);
                         ReservedSpot++;
                     }
-                    else if(car != null && car.getClass().equals(ReserveringCar.class) && car.getArrivalTime() == 0){
+                    else if(car != null && car.getClass().equals(ReservationCar.class) && car.getArrivalTime() == 0){
                         Color color3 = Color.green;
                         drawPlace(graphics, location, color3);
-                        ReserveringCar++;
+                        ReservedCar++;
                     }
 
                 }
@@ -126,10 +131,11 @@ public class CarParkView extends AbstractView {
     public static int GetParkPass(){
         return ParkPassCar;
     }
-    public static int GetReservedSpot(){ return ReservedSpot;}
-
-    public static int GetReserveringCars(){
-        return ReserveringCar;
+    public static int GetReservedSpot(){
+        return ReservedSpot;
+    }
+    public static int GetReservedCars(){
+        return ReservedCar;
     }
 
 }

@@ -8,6 +8,14 @@ import parkeersimulator.controller.*;
 import parkeersimulator.logic.*;
 import parkeersimulator.view.*;
 
+/**
+ * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
+ *
+ * Class CarParkMain
+ * Instance of the main simulation.
+ *
+ */
+
 public class CarParkMain {
     private JFrame screen;
     private Model model;
@@ -17,24 +25,29 @@ public class CarParkMain {
     private AbstractView typeOfCarView;
     private AbstractView pieView;
     private AbstractView overCrowdedView;
+    private AbstractView timeView;
 
-    private GegevensController controller2;
-    private SimulatorController controller;
+    private SettingsController settingsController;
+    private SimulatorController simulatorController;
+
+    /**
+     *Creates constructor for objects of class CarParkMain
+     */
 
     public CarParkMain() {
         model = new Model();
+        simulatorController = new SimulatorController(model);
+        settingsController = new SettingsController(model);
 
-        controller = new SimulatorController(model);
-        controller2 = new GegevensController(model);
-
-        screen = new JFrame("parkeersimulator");
-        screen.setSize(1100 , 800);
+        screen = new JFrame("Parkeergarage Simulator");
+        screen.setSize(1150 , 800);
 
         carParkView = new CarParkView(model);
         displayQueueView = new DisplayQueueView(model);
         typeOfCarView = new TypeOfCarView(model);
         pieView = new PieView(model);
         overCrowdedView = new OvercrowdedView(model);
+        timeView = new TimeView(model);
 
         screen.setResizable(false);
 
@@ -45,26 +58,27 @@ public class CarParkMain {
         screen.getContentPane().add(typeOfCarView);
         screen.getContentPane().add(pieView);
         screen.getContentPane().add(overCrowdedView);
+        screen.getContentPane().add(timeView);
 
-        screen.getContentPane().add(controller);
-        screen.getContentPane().add(controller2);
+        screen.getContentPane().add(settingsController);
+        screen.getContentPane().add(simulatorController);
 
-        controller2.setBorder(BorderFactory.createLineBorder(Color.black));
+        settingsController.setBorder(BorderFactory.createLineBorder(Color.black));
         carParkView.setBorder(BorderFactory.createLineBorder(Color.black));
         displayQueueView.setBorder(BorderFactory.createLineBorder(Color.black));
         typeOfCarView.setBorder(BorderFactory.createLineBorder(Color.black));
         pieView.setBorder(BorderFactory.createLineBorder(Color.black));
         overCrowdedView.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        simulatorController.setBounds(125, 700, 875, 500);
+        settingsController.setBounds(5, 10, 250, 420);
 
-        controller.setBounds(125, 700, 875, 500);
-        controller2.setBounds(5, 10, 200, 420);
-
-        carParkView.setBounds(230,10,860,420);
+        carParkView.setBounds(280,10,860,420);
         typeOfCarView.setBounds(5, 440, 300, 130);
         displayQueueView.setBounds(5,580,300,145);
         pieView.setBounds(810, 440, 280, 280);
         overCrowdedView.setBounds(340,440,440,250);
+        timeView.setBounds(340,740,440,250);
 
         Color displayQueueBg = new Color(0xDBEEF4);
 
@@ -73,9 +87,6 @@ public class CarParkMain {
         screen.setBackground(displayQueueBg);
 
         screen.setVisible(true);
-
-        model.totalCarsInQueue();
-        model.totalCars();
 
     }
 }
