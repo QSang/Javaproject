@@ -122,7 +122,7 @@ public class CarParkView extends AbstractView {
     }
 
     /**
-     * The methods below are getters for the PieView and the textOverview classes
+     * The methods below are getters for the PieView and the displayqueue classes
      */
 
     public static int GetAdHoc(){

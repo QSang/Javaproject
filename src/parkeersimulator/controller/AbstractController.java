@@ -6,7 +6,6 @@ import parkeersimulator.logic.Model;
 /**
  * Abstract Class for the controller
  * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
- *
  */
 
 public abstract class AbstractController extends JPanel {

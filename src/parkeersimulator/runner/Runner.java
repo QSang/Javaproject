@@ -4,9 +4,7 @@ import parkeersimulator.main.CarParkMain;
 
 /**
  * Class CarParkSimulation
- *
  * This will be an instance of the main simulation.
- *
  * @author Sang Nguyen, Sjoerd Feenstra, WaiCheong Ng, Jurgen Katoen
  */
 

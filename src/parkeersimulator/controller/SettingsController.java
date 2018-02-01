@@ -12,7 +12,6 @@ import javax.swing.*;
  * Class for settingsController in the simulator
  * has textfields, action eventlisteners, buttons, labels
  * @author Sjoerd Feenstra
- *
  */
 
 public class SettingsController extends AbstractController implements ActionListener {

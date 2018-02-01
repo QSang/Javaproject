@@ -10,7 +10,6 @@ import java.awt.*;
  * @author Sjoerd Feenstra
  **/
 
-
 public class TimeView extends AbstractView {
 
     private JLabel txtTime;

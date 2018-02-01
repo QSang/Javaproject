@@ -5,7 +5,6 @@ import parkeersimulator.logic.*;
 
 /**
  * @author WaiCheong Ng, Sang Nguyen
- *
  */
 public class PieView extends AbstractView {
     private int amountAdHoc;
