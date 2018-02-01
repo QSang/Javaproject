@@ -429,6 +429,7 @@ public class Model extends AbstractModel {
 
     /**
      * Runs through all parking spots. If occupied, gives the car 1 tick, making the cars minutes left go down by 1.
+     * @param turnoverTotal keep the turnovertotal updated
      */
     public void tick(double turnoverTotal) {
         for (int floor = 0; floor < getNumberOfFloors(); floor++) {
@@ -442,28 +443,36 @@ public class Model extends AbstractModel {
                 }
             }
         }
-
-        String text = String.format("%.2f", (double) turnoverTotal);
     }
 
     /**
-    * Get information for the carqueue
-    */
+     * Get information for the carqueue
+     * @return entrance car queue
+     */
     public int getEntranceCarQueue() {
         return entranceCarQueue.carsInQueue();
     }
 
+    /**
+     * Get information for the carqueue
+     * @return pass reserved queue
+     */
     public int getEntrancePassQueue() {
         int passReservedQueue = (entrancePassQueue.carsInQueue()+entranceReservedQueue.carsInQueue());
         return passReservedQueue;
     }
 
+    /**
+     * Get information for the carqueue
+     * @return exit car queue
+     */
     public int getExitCarQueue() {
         return exitCarQueue.carsInQueue();
     }
 
     /**
      * returns the total cars value
+     * @return total cars entered
      */
     public int getTotalCarsIndex() {
         return totalCarsIndex;
@@ -471,6 +480,7 @@ public class Model extends AbstractModel {
 
     /**
      * returns the cars exiting the garage value
+     * @return car's exiting garage
      */
     public int getExitIndex() {
         return exitIndex;
@@ -478,6 +488,7 @@ public class Model extends AbstractModel {
 
     /**
      * returns the cars that paid the garage
+     * @return paid cars
      */
     public int getPayingCars() {
         return payingCars;
@@ -501,7 +512,7 @@ public class Model extends AbstractModel {
     /**
      * Set a different value for the adhoc, pass cars or reservation
      *
-     * @param value change the value of the week
+     * @param value value of the basic value
      */
 
     public void changeWeekAr ( int value){
@@ -522,15 +533,12 @@ public class Model extends AbstractModel {
     public void changeWeekendRes ( int value){
         this.weekendReservedArrivals = value;
     }
-
     public void changeEntrySpeed ( int value){
         this.enterSpeed = value;
     }
-
     public void changePaySpeed ( int value){
         this.paymentSpeed = value;
     }
-
     public void changeExitSpeed ( int value){
         this.exitSpeed = value;
     }
@@ -544,6 +552,7 @@ public class Model extends AbstractModel {
 
     /**
      * Check if the button is stopped
+     * @param stopping set the button stop
      */
     public void setStop (boolean stopping)
     {
@@ -561,6 +570,9 @@ public class Model extends AbstractModel {
         start = starting;
     }
 
+    /**
+     * @return hours, minuts and days
+     */
     public int getHours()
     {
         return hour;

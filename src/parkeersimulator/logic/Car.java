@@ -145,6 +145,8 @@ public abstract class Car {
 
     /**
      * set the arrival time of the car.
+     * @param time Has the car arrived?
+     * @return arrival time
      */
     public int setArrivalTime(int time){
         ArrivalTime = time;
@@ -152,7 +154,7 @@ public abstract class Car {
     }
 
     /**
-     * get the arrival time of the car.
+     * @return the arrival time of the car.
      */
 
     public int getArrivalTime(){

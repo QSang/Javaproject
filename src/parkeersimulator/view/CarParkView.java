@@ -21,6 +21,7 @@ public class CarParkView extends AbstractView {
 
     /**
      * Constructor for objects of class CarParkView
+     * @param model  call information from Model
      */
     public CarParkView(Model model) {
         super(model);
@@ -123,6 +124,7 @@ public class CarParkView extends AbstractView {
 
     /**
      * The methods below are getters for the PieView and the displayqueue classes
+     * @return the Car, Parkpasscar, Reservedspot, Reservedcar value
      */
 
     public static int GetAdHoc(){

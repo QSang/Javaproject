@@ -26,6 +26,7 @@ public class DisplayQueueView extends AbstractView{
 
     /**
      * Constructor for DisplayQueueView
+     * @param model  call information from Model
      */
 
     public DisplayQueueView(Model model) {

@@ -5,7 +5,7 @@ import parkeersimulator.logic.*;
 import javax.swing.*;
 
 /**
- * @author Sang Nguyen
+ * @author Sang Nguyen, WaiCheong Ng
  * Creates a view for overcrowded queue's
  */
 
@@ -25,7 +25,7 @@ public class OvercrowdedView extends AbstractView {
 
     /**
      * Creates the OvercrowdedView constructor
-     * @param model invoke the overridden methods and get information from model
+     * @param model invoke the overridden methods and get information from Model
      */
 
     public OvercrowdedView(Model model) {

@@ -42,6 +42,7 @@ public class SettingsController extends AbstractController implements ActionList
 
     /**
      * Constructs the constructor for SettingsController
+     * @param model invoke the overridden methods and get information from Model
      */
 
     public SettingsController(Model model) {
@@ -142,9 +143,8 @@ public class SettingsController extends AbstractController implements ActionList
     }
 
     /**
-     * returns the set event
+     * @return the get actionevent
      *
-     * @return event
      */
 
     public ActionEvent getActionEvent() {

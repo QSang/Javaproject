@@ -13,6 +13,9 @@ public class Location {
 
     /**
      * Constructor for objects of class Location
+     * @param floor create floors for the CarParkView
+     * @param row create rows for the CarParkView
+     * @param place create space (place) for the cars
      */
     public Location(int floor, int row, int place) {
         this.floor = floor;

@@ -10,7 +10,6 @@ import javax.swing.*;
  * Class for SimulatorController in the simulator
  * has textfields, action eventlisteners, buttons, labels
  * @author Sjoerd Feenstra
- *
  */
 
 public class SimulatorController extends AbstractController implements ActionListener {
@@ -19,6 +18,10 @@ public class SimulatorController extends AbstractController implements ActionLis
     private JButton startButton;
     private JButton stopButton;
     private ActionEvent event;
+
+    /**
+    *@param model get information from Model
+    */
 
     public SimulatorController(Model model) {
         super(model);
@@ -32,7 +35,6 @@ public class SimulatorController extends AbstractController implements ActionLis
         stopButton = new JButton("Stop");
         stopButton.addActionListener(this);
 
-
         stopButton.setBounds(670, 0, 70, 20);
         startButton.setBounds(410, 0, 70, 20);
         oneStepButton.setBounds(10, 0, 200, 20);
@@ -44,20 +46,25 @@ public class SimulatorController extends AbstractController implements ActionLis
         setVisible(true);
     }
 
-    /**
-     * returns the set event
-     *
-     * @return event
+    /*
+    @param e event
      */
-
     public void setActionEvent(ActionEvent e) {
         event = e;
     }
+
+    /**
+     * returns the set event
+     * @return event get the event
+     */
 
     public ActionEvent getActionEvent() {
         return event;
     }
 
+    /**
+    @param e makes a new thread and runs the action
+     */
 
     public void actionPerformed(ActionEvent e) {
         setActionEvent(e);
